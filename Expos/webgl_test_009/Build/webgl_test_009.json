@@ -1,0 +1,16 @@
+{
+"companyName": "New Work Design Lab",
+"productName": "DomicileVR_201006",
+"productVersion": "0.2",
+"dataUrl": "webgl_test_009.data.unityweb",
+"wasmCodeUrl": "webgl_test_009.wasm.code.unityweb",
+"wasmFrameworkUrl": "webgl_test_009.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.2.21f1"
+}
