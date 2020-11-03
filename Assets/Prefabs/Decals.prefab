@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9085524832081633528}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Decals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,6 @@ Transform:
   - {fileID: 9085524833842197779}
   - {fileID: 9085524832283247419}
   - {fileID: 9085524832656952340}
-  - {fileID: 9085524833600707760}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -53,7 +52,7 @@ GameObject:
   - component: {fileID: 9085524832238795207}
   - component: {fileID: 9085524832238795200}
   - component: {fileID: 9085524832238795201}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: kleberuckstaende
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +67,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9085524832238795202}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 2.019052, y: 1.8733095, z: 1.0488}
+  m_LocalPosition: {x: 1.983, y: 1.946, z: 1.19304}
   m_LocalScale: {x: 0.035406392, y: 0.035406385, z: 0.035406385}
   m_Children: []
   m_Father: {fileID: 9085524832081633528}
@@ -146,7 +145,7 @@ GameObject:
   - component: {fileID: 9085524832283247412}
   - component: {fileID: 9085524832283247413}
   - component: {fileID: 9085524832283247414}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fensterschmutz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,8 +160,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9085524832283247415}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: -1.227, y: 2.0423093, z: 3.877}
-  m_LocalScale: {x: 0.09689481, y: 0.09332063, z: 0.100308836}
+  m_LocalPosition: {x: -1.132, y: 2.086, z: 4.279}
+  m_LocalScale: {x: 0.100588195, y: 0.09332063, z: 0.100308836}
   m_Children: []
   m_Father: {fileID: 9085524832081633528}
   m_RootOrder: 8
@@ -239,7 +238,7 @@ GameObject:
   - component: {fileID: 9085524832380000852}
   - component: {fileID: 9085524832380000853}
   - component: {fileID: 9085524832380000854}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: heizungdecal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +253,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9085524832380000855}
   m_LocalRotation: {x: -0.0023394155, y: -0.7071029, z: 0.7071029, w: -0.0023393736}
-  m_LocalPosition: {x: -0.585, y: 0.608, z: 3.86}
+  m_LocalPosition: {x: -0.4593, y: 0.6097, z: 3.9403}
   m_LocalScale: {x: 0.006896576, y: 0.006896576, z: 0.006896578}
   m_Children: []
   m_Father: {fileID: 9085524832081633528}
@@ -332,7 +331,7 @@ GameObject:
   - component: {fileID: 9085524832435416500}
   - component: {fileID: 9085524832435416501}
   - component: {fileID: 9085524832435416502}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: mustertapete_decal_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +346,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9085524832435416503}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 3.5780518, y: 1.4563094, z: -1.744}
+  m_LocalPosition: {x: 3.624, y: 1.4563094, z: -1.744}
   m_LocalScale: {x: 0.17796476, y: 0.17796476, z: 0.17796476}
   m_Children: []
   m_Father: {fileID: 9085524832081633528}
@@ -425,7 +424,7 @@ GameObject:
   - component: {fileID: 9085524832448004985}
   - component: {fileID: 9085524832448004986}
   - component: {fileID: 9085524832448004987}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: schmutztapete
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,7 +439,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9085524832448004980}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.96305203, y: 2.0363095, z: -3.8082495}
+  m_LocalPosition: {x: 0.96305203, y: 2.0363095, z: -3.7928}
   m_LocalScale: {x: 0.10038543, y: 0.10038542, z: 0.10038542}
   m_Children: []
   m_Father: {fileID: 9085524832081633528}
@@ -518,7 +517,7 @@ GameObject:
   - component: {fileID: 9085524832656952341}
   - component: {fileID: 9085524832656952342}
   - component: {fileID: 9085524832656952343}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: risstapete
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -533,7 +532,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9085524832656952336}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -0.06294811, y: 1.8843094, z: -6.0932493}
+  m_LocalPosition: {x: -0.0559, y: 1.8843094, z: -6.0932493}
   m_LocalScale: {x: 0.025343304, y: 0.025343304, z: 0.025343304}
   m_Children: []
   m_Father: {fileID: 9085524832081633528}
@@ -611,7 +610,7 @@ GameObject:
   - component: {fileID: 9085524832927455112}
   - component: {fileID: 9085524832927455113}
   - component: {fileID: 9085524832927455114}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fussboden_decal_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,7 +625,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9085524832927455115}
   m_LocalRotation: {x: -0, y: -0.6998068, z: -0, w: 0.71433216}
-  m_LocalPosition: {x: -0.60794806, y: 0.4144783, z: -3.3182495}
+  m_LocalPosition: {x: -0.60794806, y: 0.41036, z: -3.3182495}
   m_LocalScale: {x: 0.015769191, y: 0.015769191, z: 0.015769191}
   m_Children: []
   m_Father: {fileID: 9085524832081633528}
@@ -704,7 +703,7 @@ GameObject:
   - component: {fileID: 9085524832928321894}
   - component: {fileID: 9085524832928321895}
   - component: {fileID: 9085524832928321888}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: mustertapete_decal_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -719,7 +718,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9085524832928321889}
   m_LocalRotation: {x: 0.00000005960465, y: 0.7071068, z: 0.7071068, w: -0.00000005960465}
-  m_LocalPosition: {x: -2.094, y: 0.989, z: -2.006}
+  m_LocalPosition: {x: -2.094, y: 0.989, z: -1.97684}
   m_LocalScale: {x: 0.15314607, y: 0.15314607, z: 0.15314607}
   m_Children: []
   m_Father: {fileID: 9085524832081633528}
@@ -797,7 +796,7 @@ GameObject:
   - component: {fileID: 9085524833066465452}
   - component: {fileID: 9085524833066465453}
   - component: {fileID: 9085524833066465454}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fussboden_decal_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -812,7 +811,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9085524833066465455}
   m_LocalRotation: {x: -0, y: -0.6998068, z: -0, w: 0.71433216}
-  m_LocalPosition: {x: -0.6719481, y: 0.4144783, z: -3.2892494}
+  m_LocalPosition: {x: -0.6719481, y: 0.41036, z: -3.2892494}
   m_LocalScale: {x: 0.0044599636, y: 0.0044599636, z: 0.0044599636}
   m_Children: []
   m_Father: {fileID: 9085524832081633528}
@@ -878,99 +877,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &9085524833600707756
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9085524833600707760}
-  - component: {fileID: 9085524833600707761}
-  - component: {fileID: 9085524833600707762}
-  - component: {fileID: 9085524833600707763}
-  m_Layer: 0
-  m_Name: spachtelloch
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9085524833600707760
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9085524833600707756}
-  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 3.623, y: 1.7273095, z: 2.9487505}
-  m_LocalScale: {x: 0.007223258, y: 0.007223258, z: 0.007223258}
-  m_Children: []
-  m_Father: {fileID: 9085524832081633528}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
---- !u!33 &9085524833600707761
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9085524833600707756}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &9085524833600707762
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9085524833600707756}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 3b7263e3e94ba1444b369a6347b75b0f, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!64 &9085524833600707763
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9085524833600707756}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &9085524833842197775
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,7 +889,7 @@ GameObject:
   - component: {fileID: 9085524833842197772}
   - component: {fileID: 9085524833842197773}
   - component: {fileID: 9085524833842197774}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fussboden_decal_2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -998,7 +904,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9085524833842197775}
   m_LocalRotation: {x: -0, y: -0.6998068, z: -0, w: 0.71433216}
-  m_LocalPosition: {x: 2.4530518, y: 0.4144783, z: -6.667249}
+  m_LocalPosition: {x: 2.4530518, y: 0.4105, z: -6.667249}
   m_LocalScale: {x: 0.015769191, y: 0.015769191, z: 0.015769191}
   m_Children: []
   m_Father: {fileID: 9085524832081633528}
