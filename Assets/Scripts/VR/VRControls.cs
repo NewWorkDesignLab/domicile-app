@@ -19,6 +19,8 @@ public class VRControls : MonoBehaviour
   public float menuCrawlScale = .0025f;
   PlayerStatus playerStatus;
 
+  private Coroutine onWalkCloseMenu;
+
   void Awake()
   {
     instance = this;
@@ -34,11 +36,17 @@ public class VRControls : MonoBehaviour
     if (playerStatus == PlayerStatus.walk)
     {
       MovePlayer();
+      if (onWalkCloseMenu == null && IngameMenuScript.instance.mainMenu.gameObject.active) {
+        onWalkCloseMenu = StartCoroutine(CloseMenuAfterConstantWalk());
+      }
     }
     if (Input.touchCount > 0)
     {
       IngameMenuScript.instance.mainMenu.SetActive(false);
-      ScreenshotScript.instance.TakeScreenshot(() => { });
+      IngameMenuScript.instance.menuButton.SetActive(false);
+      ScreenshotScript.instance.TakeScreenshot(() => {
+        IngameMenuScript.instance.menuButton.SetActive(true);
+      });
     }
   }
 
@@ -61,6 +69,8 @@ public class VRControls : MonoBehaviour
     walkCircle.enabled = true;
     SetHeadPosition(headNormalHeight);
     SetMenuScale(menuNormalScale);
+    HUD.instance.crouchIcon.SetActive(false);
+    HUD.instance.standIcon.SetActive(true);
   }
 
   public void SetModeCrawl()
@@ -69,6 +79,8 @@ public class VRControls : MonoBehaviour
     walkCircle.enabled = false;
     SetHeadPosition(headCrawlHeight);
     SetMenuScale(menuCrawlScale);
+    HUD.instance.standIcon.SetActive(false);
+    HUD.instance.crouchIcon.SetActive(true);
   }
 
   private void SetHeadPosition(float value)
@@ -93,6 +105,15 @@ public class VRControls : MonoBehaviour
     {
       SetModeIdle();
     }
+  }
+
+  private IEnumerator CloseMenuAfterConstantWalk() {
+    yield return new WaitForSeconds(1f);
+    if (playerStatus == PlayerStatus.walk) {
+      IngameMenuScript.instance.mainMenu.SetActive(false);
+      IngameMenuScript.instance.menuButton.SetActive(true);
+    }
+    onWalkCloseMenu = null;
   }
 }
 

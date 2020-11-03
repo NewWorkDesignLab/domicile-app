@@ -8,6 +8,9 @@ public class HUD : MonoBehaviour
 {
     public static HUD instance;
     public Text notificationText;
+    public Text roomDisplayText;
+    public GameObject crouchIcon;
+    public GameObject standIcon;
 
     void Awake()
     {
@@ -54,5 +57,10 @@ public class HUD : MonoBehaviour
     public void HideAllNotifications()
     {
         notificationText.text = "";
+    }
+
+
+    public void UpdateRoomDisplay(string room) {
+        roomDisplayText.text = room;
     }
 }

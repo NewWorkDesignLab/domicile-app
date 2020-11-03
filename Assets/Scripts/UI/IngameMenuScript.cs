@@ -7,6 +7,7 @@ public class IngameMenuScript : MonoBehaviour
 {
   public static IngameMenuScript instance;
   public GameObject mainMenu;
+  public GameObject menuButton;
   private bool endConfirmation = false;
 
   void Awake()
@@ -17,6 +18,7 @@ public class IngameMenuScript : MonoBehaviour
   void Start()
   {
     mainMenu.SetActive(false);
+    menuButton.SetActive(true);
   }
 
   void Update()
@@ -41,6 +43,7 @@ public class IngameMenuScript : MonoBehaviour
     {
       UpdateMainMenuPosition();
       mainMenu.SetActive(true);
+      menuButton.SetActive(false);
     });
   }
   public void CloseMainMenu()
@@ -48,6 +51,7 @@ public class IngameMenuScript : MonoBehaviour
     GazeTimer.instance.StartGazeTimer(() =>
     {
       mainMenu.SetActive(false);
+      menuButton.SetActive(true);
     });
   }
 
@@ -66,6 +70,7 @@ public class IngameMenuScript : MonoBehaviour
     {
       VRControls.instance.ToggleModeCrawl();
       mainMenu.SetActive(false);
+      menuButton.SetActive(true);
     });
   }
   public void TookScreenshot()
@@ -73,7 +78,10 @@ public class IngameMenuScript : MonoBehaviour
     GazeTimer.instance.StartGazeTimer(() =>
     {
       mainMenu.SetActive(false);
-      ScreenshotScript.instance.TakeScreenshot(() => { });
+      menuButton.SetActive(false);
+      ScreenshotScript.instance.TakeScreenshot(() => {
+        menuButton.SetActive(true);
+      });
     });
   }
   public void ExitScenario()
