@@ -22,15 +22,15 @@ public class ExecutionRequests : MonoBehaviour
 
 
   // UPLOAD IMAGES
-  public void UploadImages(int execution_id, List<string> images)
+  public void UploadImages(int execution_id, string[] images)
   {
     UploadImages(execution_id, images, (ignore) => { }, (ignore) => { });
   }
-  public void UploadImages(int execution_id, List<string> images, Action<string> onFailure)
+  public void UploadImages(int execution_id, string[] images, Action<string> onFailure)
   {
     UploadImages(execution_id, images, (ignore) => { }, onFailure);
   }
-  public void UploadImages(int execution_id, List<string> images, Action<string> onSuccess, Action<string> onFailure)
+  public void UploadImages(int execution_id, string[] images, Action<string> onSuccess, Action<string> onFailure)
   {
     API.file.UploadImages(String.Format("/api/executions/{0}/images", execution_id), images, onSuccess, onFailure);
   }
