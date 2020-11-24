@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomDisplayTrigger : MonoBehaviour
-{
+public class RoomDisplayTrigger : MonoBehaviour {
     public string roomName;
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter (Collider other) {
         if (other.transform.tag == "Player" && HUD.instance != null) {
-            HUD.instance.UpdateRoomDisplay(roomName);
+            HUD.instance.UpdateRoomDisplay (roomName);
         }
     }
 }

@@ -11,23 +11,24 @@ public class EndScenario : MonoBehaviour {
     instance = this;
   }
   void Start () {
-#if PLATFORM_ANDROID
+#if UNITY_EDITOR
+    Debug.Log ("[EndScenario Start] Would only upload Screenshots on Android.");
+    CrossSceneManager.instance.ResetEnvironment ();
+    SceneManager.LoadScene ("MainMenuScene");
+#else
     NativeGallery.Permission permission = NativeGallery.GetImagesFromGallery ((string[] paths) => {
       if (paths != null) {
-        ServerManager.execution.UploadImages (CrossSceneManager.currentExecution.id, paths, (success) => {
-          Debug.Log ("[EndScenario Start] " + success);
+        Execution.UploadImages (CrossSceneManager.currentExecution.id, paths, (execution) => {
+          Debug.Log ("[EndScenario Start] Success in Image Upload. Execution: " + execution);
           CrossSceneManager.instance.ResetEnvironment ();
           SceneManager.LoadScene ("MainMenuScene");
-        }, (error) => {
-          Debug.LogError ("[EndScenario Start] " + error);
+        }, () => {
+          Debug.LogError ("[EndScenario Start] Error in Image Upload.");
           errorMassage.SetActive (true);
         });
       }
     }, "Screenshots zum Upload auswählen", "image/png");
     Debug.Log ("[EndScenario Start] " + permission);
-#else
-    Debug.Log ("[EndScenario Start] Would only upload Screenshots on Android.");
 #endif
   }
-
 }

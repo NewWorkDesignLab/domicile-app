@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrossSceneManager : MonoBehaviour
-{
+public class CrossSceneManager : MonoBehaviour {
   public static CrossSceneManager instance;
   public static User currentUser;
   public static Scenario currentScenario;
@@ -11,16 +10,14 @@ public class CrossSceneManager : MonoBehaviour
   public static Execution currentExecution;
   public List<string> unsavedScreenshots;
 
-  void Awake()
-  {
+  void Awake () {
     instance = this;
   }
 
-  public void ResetEnvironment()
-  {
+  public void ResetEnvironment () {
     currentScenario = null;
     currentParticipation = null;
     currentExecution = null;
-    unsavedScreenshots.Clear();
+    unsavedScreenshots.Clear ();
   }
 }

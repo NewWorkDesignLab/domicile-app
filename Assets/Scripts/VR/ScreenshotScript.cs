@@ -2,9 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-#if PLATFORM_ANDROID
 using UnityEngine.Android;
-#endif
 
 public class ScreenshotScript : MonoBehaviour {
   public static ScreenshotScript instance;
@@ -39,7 +37,10 @@ public class ScreenshotScript : MonoBehaviour {
   public IEnumerator SavePhoto (Action<bool> callback) {
     yield return new WaitForEndOfFrame ();
 
-#if PLATFORM_ANDROID
+#if UNITY_EDITOR
+    Debug.Log ("[ScreenshotScript SavePhoto] Would only save Screenshot on Android.");
+    callback (true);
+#else
     Texture2D image = new Texture2D (Screen.width, Screen.height, TextureFormat.RGB24, false);
     image.ReadPixels (new Rect (0, 0, Screen.width, Screen.height), 0, 0);
     image.Apply ();
@@ -55,9 +56,6 @@ public class ScreenshotScript : MonoBehaviour {
     });
     Debug.Log ("[ScreenshotScript SavePhoto] Image Permission: " + permission);
     Destroy (image);
-#else
-    Debug.Log ("[ScreenshotScript SavePhoto] Would only save Screenshot on Android.");
-    callback (true);
 #endif
   }
 }

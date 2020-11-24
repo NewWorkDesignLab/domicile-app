@@ -1,11 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GazeTimer : MonoBehaviour
-{
+public class GazeTimer : MonoBehaviour {
   public static GazeTimer instance;
 
   public Image gazeTimerImage;
@@ -15,45 +14,37 @@ public class GazeTimer : MonoBehaviour
   private bool gazeIsActive = false;
   private Coroutine timerCoroutine;
 
-  void Awake()
-  {
+  void Awake () {
     instance = this;
   }
 
-  void Update()
-  {
-    if (gazeIsActive)
-    {
+  void Update () {
+    if (gazeIsActive) {
       gazeTime += Time.deltaTime;
       gazeTimerImage.fillAmount = gazeTime / timerDurarion;
     }
   }
 
-  public void StartGazeTimer(Action action)
-  {
+  public void StartGazeTimer (Action action) {
     gazeIsActive = true;
     gazeTime = 0;
-    if (timerCoroutine != null)
-    {
-      StopCoroutine(timerCoroutine);
+    if (timerCoroutine != null) {
+      StopCoroutine (timerCoroutine);
       timerCoroutine = null;
     }
-    timerCoroutine = StartCoroutine(WaitForActivation(action));
+    timerCoroutine = StartCoroutine (WaitForActivation (action));
   }
 
-  private IEnumerator WaitForActivation(Action action)
-  {
-    yield return new WaitForSeconds(timerDurarion);
-    action.Invoke();
-    StopGazeTimer();
+  private IEnumerator WaitForActivation (Action action) {
+    yield return new WaitForSeconds (timerDurarion);
+    action.Invoke ();
+    StopGazeTimer ();
   }
 
-  public void StopGazeTimer()
-  {
+  public void StopGazeTimer () {
     gazeIsActive = false;
-    if (timerCoroutine != null)
-    {
-      StopCoroutine(timerCoroutine);
+    if (timerCoroutine != null) {
+      StopCoroutine (timerCoroutine);
       timerCoroutine = null;
     }
     gazeTime = 0;
