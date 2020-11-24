@@ -1,20 +1,24 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartManager : MonoBehaviour {
+public class StartSceneStarter : MonoBehaviour {
   void Start () {
     SetupDataManager ();
     SetupCrashReportManager ();
 
-    if (DataManager.persistedData.saveLogin) {
-      User.CheckToken ((success) => {
-        SceneManager.LoadScene ("MainMenuScene");
-      }, () => {
+    PermissionManager.ManagePermissions (() => {
+      SceneManager.LoadScene ("ManualPermissionScene");
+    }, () => {
+      if (DataManager.persistedData.saveLogin) {
+        User.CheckToken ((success) => {
+          SceneManager.LoadScene ("MainMenuScene");
+        }, () => {
+          SceneManager.LoadScene ("UserManagementScene");
+        });
+      } else {
         SceneManager.LoadScene ("UserManagementScene");
-      });
-    } else {
-      SceneManager.LoadScene ("UserManagementScene");
-    }
+      }
+    });
   }
 
   private void SetupDataManager () {

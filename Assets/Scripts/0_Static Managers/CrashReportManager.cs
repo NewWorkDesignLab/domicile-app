@@ -33,7 +33,7 @@ public static class CrashReportManager {
       Debug.Log ("[CrashReportManager MailLog] Skipped Crash Report. Will only Send on Android.");
 #else
       string json = JsonUtility.ToJson (loadedData);
-      ServerManager.PostRequest ("/bugreport", json, (success) => {
+      ServerManager.PostRequest ("/api/bugreport", json, (success) => {
         Debug.Log ("[CrashReportManager MailLog] Successfully send Log.");
       }, () => { });
 #endif
