@@ -70,6 +70,7 @@ public class MainMenuInterfaces : MonoBehaviour {
     string id = joinScenarioIdInput.text;
     string password = joinScenarioPasswordInput.text;
     Debug.Log (String.Format ("Would join Scenario. ID: {0}", id));
+    Debug.LogError("TEST ERROR");
   }
   public void ButtonSignOut () {
     User.SignOut ((success) => {

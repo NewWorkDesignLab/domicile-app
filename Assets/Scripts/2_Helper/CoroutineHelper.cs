@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CoroutineHelper : MonoBehaviour {
-    public static CoroutineHelper instance;
+  public static CoroutineHelper instance;
 
-    void Awake () {
-        instance = this;
-    }
+  void Awake () {
+    instance = this;
+  }
 }
