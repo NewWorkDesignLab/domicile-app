@@ -14,7 +14,7 @@ public class AuthRequests : MonoBehaviour
   }
   public void CheckToken(Action<string> onSuccess, Action<string> onFailure)
   {
-    API.instance.GetRequest("/api/auth/validate_token", "", onSuccess, onFailure);
+    ServerManager.instance.GetRequest("/api/auth/validate_token", "", onSuccess, onFailure);
   }
 
 
@@ -31,7 +31,7 @@ public class AuthRequests : MonoBehaviour
   {
     var data = new SignInData(email, password);
     string json = JsonUtility.ToJson(data);
-    API.instance.PostRequest("/api/auth/sign_in", json, onSuccess, onFailure);
+    ServerManager.instance.PostRequest("/api/auth/sign_in", json, onSuccess, onFailure);
   }
 
 
@@ -46,7 +46,7 @@ public class AuthRequests : MonoBehaviour
   }
   public void SignOut(Action<string> onSuccess, Action<string> onFailure)
   {
-    API.instance.DeleteRequest("/api/auth/sign_out", "", onSuccess, onFailure);
+    ServerManager.instance.DeleteRequest("/api/auth/sign_out", "", onSuccess, onFailure);
   }
 
 
@@ -61,10 +61,10 @@ public class AuthRequests : MonoBehaviour
   }
   public void Register(string email, string password, string passwordConfirmation, Action<string> onSuccess, Action<string> onFailure)
   {
-    string confirmSuccessUrl = API.instance.host;
+    string confirmSuccessUrl = ServerManager.instance.host;
     var data = new RegisterData(email, password, passwordConfirmation, confirmSuccessUrl);
     string json = JsonUtility.ToJson(data);
-    API.instance.PostRequest("/api/auth", json, onSuccess, onFailure);
+    ServerManager.instance.PostRequest("/api/auth", json, onSuccess, onFailure);
   }
 
 
@@ -79,7 +79,7 @@ public class AuthRequests : MonoBehaviour
   }
   public void DeleteAccount(Action<string> onSuccess, Action<string> onFailure)
   {
-    API.instance.DeleteRequest("/api/auth", "", onSuccess, onFailure);
+    ServerManager.instance.DeleteRequest("/api/auth", "", onSuccess, onFailure);
   }
 
 
@@ -96,7 +96,7 @@ public class AuthRequests : MonoBehaviour
   {
     var data = new UpdateAccountData(password, passwordConfirmation, currentPassword);
     string json = JsonUtility.ToJson(data);
-    API.instance.PutRequest("/api/auth", json, onSuccess, onFailure);
+    ServerManager.instance.PutRequest("/api/auth", json, onSuccess, onFailure);
   }
 
 
@@ -113,7 +113,7 @@ public class AuthRequests : MonoBehaviour
   {
     var data = new PasswordResetData(email, redirectUrl);
     string json = JsonUtility.ToJson(data);
-    API.instance.PostRequest("/api/auth/password", json, onSuccess, onFailure);
+    ServerManager.instance.PostRequest("/api/auth/password", json, onSuccess, onFailure);
   }
 
 
@@ -130,7 +130,7 @@ public class AuthRequests : MonoBehaviour
   {
     var data = new ChangePasswordData(password, passwordConfirmation, currentPassword);
     string json = JsonUtility.ToJson(data);
-    API.instance.PutRequest("/api/auth/password", json, onSuccess, onFailure);
+    ServerManager.instance.PutRequest("/api/auth/password", json, onSuccess, onFailure);
   }
 
 
@@ -147,7 +147,7 @@ public class AuthRequests : MonoBehaviour
   {
     var data = new ResendConfirmationData(email, redirectUrl);
     string json = JsonUtility.ToJson(data);
-    API.instance.PostRequest("/api/auth/confirmation", json, onSuccess, onFailure);
+    ServerManager.instance.PostRequest("/api/auth/confirmation", json, onSuccess, onFailure);
   }
 }
 

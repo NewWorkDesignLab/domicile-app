@@ -36,7 +36,7 @@ public class UserManagementInterfaces : MonoBehaviour
   {
     string email = loginEmailField.text;
     string password = loginPasswordField.text;
-    API.auth.SignIn(email, password, (success) =>
+    ServerManager.auth.SignIn(email, password, (success) =>
     {
       DataManager.getValue.saveLogin = loginSaveToogle.isOn;
       DataManager.getValue.userEmail = email;
@@ -53,7 +53,7 @@ public class UserManagementInterfaces : MonoBehaviour
     // string email = registerEmailField.text;
     // string password = registerPasswordField.text;
     // string passwordConfirmation = registerPasswordConfirmationField.text;
-    // API.auth.Register(email, password, passwordConfirmation, (success) =>
+    // ServerManager.auth.Register(email, password, passwordConfirmation, (success) =>
     // {
     //   Debug.Log("Register successfull: " + success);
     //   ShowLoginGroup();
@@ -102,14 +102,14 @@ public class UserManagementInterfaces : MonoBehaviour
 
   public void OpenBrowserRegister()
   {
-    Application.OpenURL(String.Format("{0}/benutzer/registrieren", API.instance.host));
+    Application.OpenURL(String.Format("{0}/benutzer/registrieren", ServerManager.instance.host));
   }
   public void OpenBrowserForgetPassword()
   {
-    Application.OpenURL(String.Format("{0}/benutzer/passwort/neu", API.instance.host));
+    Application.OpenURL(String.Format("{0}/benutzer/passwort/neu", ServerManager.instance.host));
   }
   public void OpenBrowserResendConfirmation()
   {
-    Application.OpenURL(String.Format("{0}/benutzer/bestaetigen/neu", API.instance.host));
+    Application.OpenURL(String.Format("{0}/benutzer/bestaetigen/neu", ServerManager.instance.host));
   }
 }

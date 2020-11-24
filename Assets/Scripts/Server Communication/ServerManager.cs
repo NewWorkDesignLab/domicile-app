@@ -9,9 +9,9 @@ using UnityEngine.Networking;
 [RequireComponent(typeof(ExecutionRequests))]
 [RequireComponent(typeof(FileRequests))]
 [RequireComponent(typeof(AuthRequests))]
-public class API : MonoBehaviour
+public class ServerManager : MonoBehaviour
 {
-  public static API instance;
+  public static ServerManager instance;
   public static ScenarioRequests scenario;
   public static ParticipationRequests participation;
   public static ExecutionRequests execution;
@@ -96,13 +96,13 @@ public class API : MonoBehaviour
       request.SetRequestHeader("uid", uid);
       request.SetRequestHeader("client", client);
       request.SetRequestHeader("access-token", accessToken);
-      Debug.Log(String.Format("[API RequestHelper] Acces-Token (now_in_use): {0} (uid: {1}, client: {2})", accessToken, uid, client));
+      Debug.Log(String.Format("[ServerManager RequestHelper] Acces-Token (now_in_use): {0} (uid: {1}, client: {2})", accessToken, uid, client));
     }
     yield return request.SendWebRequest();
 
     if (request.isNetworkError || request.isHttpError)
     {
-      Debug.LogError("[API RequestHelper] Error in Request Execution: " + request.error + "; Requested: " + request.url);
+      Debug.LogError("[ServerManager RequestHelper] Error in Request Execution: " + request.error + "; Requested: " + request.url);
       string body = request.downloadHandler.text;
       onFailure(body);
     }
@@ -117,10 +117,10 @@ public class API : MonoBehaviour
         DataManager.getValue.lastKnownClient = _client;
         DataManager.getValue.lastKnownAccessToken = _accessToken;
         DataManager.instance.Save();
-        Debug.Log(String.Format("[API RequestHelper] Acces-Token (new): {0} (uid: {1}, client: {2})", _accessToken, _uid, _client));
+        Debug.Log(String.Format("[ServerManager RequestHelper] Acces-Token (new): {0} (uid: {1}, client: {2})", _accessToken, _uid, _client));
       }
       string body = request.downloadHandler.text;
-      Debug.Log("[API RequestHelper] Success in Request Execution: " + body + "; Request: " + request.url);
+      Debug.Log("[ServerManager RequestHelper] Success in Request Execution: " + body + "; Request: " + request.url);
       onSuccess(body);
     }
   }

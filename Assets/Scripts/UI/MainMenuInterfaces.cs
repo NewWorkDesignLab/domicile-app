@@ -25,7 +25,7 @@ public class MainMenuInterfaces : MonoBehaviour
 
   public void UpdateParticipationsList()
   {
-    API.participation.Index((success) =>
+    ServerManager.participation.Index((success) =>
     {
       string editJson = "{\"participations\":" + success + "}";
       ParticipationGroup participationGroup = JsonUtility.FromJson<ParticipationGroup>(editJson);
@@ -94,7 +94,7 @@ public class MainMenuInterfaces : MonoBehaviour
   }
   public void ButtonSignOut()
   {
-    API.auth.SignOut((success) =>
+    ServerManager.auth.SignOut((success) =>
     {
       DataManager.getValue.lastKnownAccessToken = "";
       DataManager.getValue.lastKnownClient = "";
@@ -110,10 +110,10 @@ public class MainMenuInterfaces : MonoBehaviour
   }
   public void OpenBrowserDashboard()
   {
-    Application.OpenURL(String.Format("{0}/dashboard", API.instance.host));
+    Application.OpenURL(String.Format("{0}/dashboard", ServerManager.instance.host));
   }
   public void OpenBrowserNewScenario()
   {
-    Application.OpenURL(String.Format("{0}/szenarios/neu", API.instance.host));
+    Application.OpenURL(String.Format("{0}/szenarios/neu", ServerManager.instance.host));
   }
 }

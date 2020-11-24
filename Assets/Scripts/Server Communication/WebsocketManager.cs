@@ -24,13 +24,13 @@ public class WebsocketManager : MonoBehaviour
 
   void Connect()
   {
-    API.auth.CheckToken((success) =>
+    ServerManager.auth.CheckToken((success) =>
     {
       string uid = DataManager.getValue.lastKnownUid;
       string client = DataManager.getValue.lastKnownClient;
       string accessToken = DataManager.getValue.lastKnownAccessToken;
-      string _protocol = API.instance.useSecure ? API.instance.websocketSecure : API.instance.websocket;
-      string _domain = API.instance.useSecure ? API.instance.domainSecure : API.instance.domain;
+      string _protocol = ServerManager.instance.useSecure ? ServerManager.instance.websocketSecure : ServerManager.instance.websocket;
+      string _domain = ServerManager.instance.useSecure ? ServerManager.instance.domainSecure : ServerManager.instance.domain;
 
       string url = String.Format("{0}://{1}/cable/?access-token={2}&client={3}&uid={4}&encoding=text", _protocol, _domain, accessToken, client, uid);
       webSocket = new WebSocket(url);

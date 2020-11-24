@@ -14,7 +14,7 @@ public class ParticipationRequests : MonoBehaviour
   }
   public void Index(Action<string> onSuccess, Action<string> onFailure)
   {
-    API.instance.GetRequest("/api/participations", "", onSuccess, onFailure);
+    ServerManager.instance.GetRequest("/api/participations", "", onSuccess, onFailure);
   }
 
 
@@ -31,7 +31,7 @@ public class ParticipationRequests : MonoBehaviour
   {
     var data = new ParticipationCreateData(scenario_id);
     string json = JsonUtility.ToJson(data);
-    API.instance.PostRequest("/api/participations", json, onSuccess, onFailure);
+    ServerManager.instance.PostRequest("/api/participations", json, onSuccess, onFailure);
   }
 
 
@@ -46,7 +46,7 @@ public class ParticipationRequests : MonoBehaviour
   }
   public void Show(int id, Action<string> onSuccess, Action<string> onFailure)
   {
-    API.instance.GetRequest(String.Format("/api/participations/{0}", id), "", onSuccess, onFailure);
+    ServerManager.instance.GetRequest(String.Format("/api/participations/{0}", id), "", onSuccess, onFailure);
   }
 }
 

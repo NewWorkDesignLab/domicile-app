@@ -9,7 +9,7 @@ public class StartManager : MonoBehaviour
 
         if (DataManager.getValue.saveLogin)
         {
-            API.auth.CheckToken((success) =>
+            ServerManager.auth.CheckToken((success) =>
             {
                 SceneManager.LoadScene("MainMenuScene");
             }, (failure) =>

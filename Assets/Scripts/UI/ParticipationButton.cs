@@ -17,7 +17,7 @@ public class ParticipationButton : MonoBehaviour
 
   private void UpdateScenario()
   {
-    API.scenario.Show(participation.scenario_id, (success) =>
+    ServerManager.scenario.Show(participation.scenario_id, (success) =>
     {
       Scenario scenario = JsonUtility.FromJson<Scenario>(success);
       CrossSceneManager.currentScenario = scenario;
@@ -29,7 +29,7 @@ public class ParticipationButton : MonoBehaviour
 
   private void CreateExecution()
   {
-    API.execution.Create(participation.id, (success) =>
+    ServerManager.execution.Create(participation.id, (success) =>
     {
       Execution execution = JsonUtility.FromJson<Execution>(success);
       CrossSceneManager.currentExecution = execution;

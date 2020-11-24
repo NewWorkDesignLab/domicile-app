@@ -17,22 +17,22 @@ public class ExecutionRequests : MonoBehaviour
   {
     var data = new ExecutionCreateData(participation_id);
     string json = JsonUtility.ToJson(data);
-    API.instance.PostRequest("/api/executions", json, onSuccess, onFailure);
+    ServerManager.instance.PostRequest("/api/executions", json, onSuccess, onFailure);
   }
 
 
   // UPLOAD IMAGES
-  public void UploadImages(int execution_id, List<string> images)
+  public void UploadImages(int execution_id, string[] images)
   {
     UploadImages(execution_id, images, (ignore) => { }, (ignore) => { });
   }
-  public void UploadImages(int execution_id, List<string> images, Action<string> onFailure)
+  public void UploadImages(int execution_id, string[] images, Action<string> onFailure)
   {
     UploadImages(execution_id, images, (ignore) => { }, onFailure);
   }
-  public void UploadImages(int execution_id, List<string> images, Action<string> onSuccess, Action<string> onFailure)
+  public void UploadImages(int execution_id, string[] images, Action<string> onSuccess, Action<string> onFailure)
   {
-    API.file.UploadImages(String.Format("/api/executions/{0}/images", execution_id), images, onSuccess, onFailure);
+    ServerManager.file.UploadImages(String.Format("/api/executions/{0}/images", execution_id), images, onSuccess, onFailure);
   }
 }
 

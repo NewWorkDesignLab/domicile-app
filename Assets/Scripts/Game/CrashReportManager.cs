@@ -46,7 +46,7 @@ public class CrashReportManager : MonoBehaviour
             Debug.Log("Skipped Crash Report. Will only Send on Android.");
 #else
       string json = JsonUtility.ToJson(loadedData);
-      API.instance.PostRequest("/api/bugreport", json, (success) => { }, (failure) => { });
+      ServerManager.instance.PostRequest("//bugreport", json, (success) => { }, (failure) => { });
 #endif
 
             StartCoroutine(DataManager.instance.Delete(filename));

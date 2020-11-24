@@ -14,17 +14,21 @@ public class ScreenshotScript : MonoBehaviour {
     instance = this;
   }
 
-  public void TakeScreenshot (Action callback) {
+  public void TakeScreenshot (Action<bool> callback) {
     if (!isBusy) {
       isBusy = true;
       var notification = new List<string> ();
       notification.Add ("Screenshot in 2");
       notification.Add ("Screenshot in 1");
+      notification.Add ("");
       HUD.instance.ShowNotification (notification, 1f, () => {
-        StartCoroutine (SavePhoto (() => {
-          HUD.instance.ShowNotification ("Screenshot gespeichert", 1f);
+        StartCoroutine (SavePhoto ((success) => {
+          if (success)
+            HUD.instance.ShowNotification ("Screenshot gespeichert", .6f);
+          else
+            HUD.instance.ShowNotification ("Fehler beim Speichern des Bildes", 1f);
           isBusy = false;
-          callback ();
+          callback (success);
         }));
       });
     } else {
@@ -32,54 +36,28 @@ public class ScreenshotScript : MonoBehaviour {
     }
   }
 
-  public IEnumerator SavePhoto (Action callback) {
-#if PLATFORM_ANDROID
-    Texture2D texture = new Texture2D (Screen.width, Screen.height, TextureFormat.RGB24, false);
-    texture.ReadPixels (new Rect (0, 0, Screen.width, Screen.height), 0, 0, false);
-    texture.Apply ();
-    string myFileName = "screenshot_domicile_" + System.DateTime.Now.Hour + System.DateTime.Now.Minute + System.DateTime.Now.Second;
-    var imageUrl = SaveImageToGallery (texture, myFileName, "Saving photo to android");
-    var imageUrl_2 = imageUrl.Replace("content:/", "");
-    Debug.Log(imageUrl);
-    Debug.Log(imageUrl_2);
-
+  public IEnumerator SavePhoto (Action<bool> callback) {
     yield return new WaitForEndOfFrame ();
-    CrossSceneManager.instance.unsavedScreenshots = CrossSceneManager.instance.unsavedScreenshots == null ? new List<string> () : CrossSceneManager.instance.unsavedScreenshots;
-    CrossSceneManager.instance.unsavedScreenshots.Add (imageUrl_2);
+
+#if PLATFORM_ANDROID
+    Texture2D image = new Texture2D (Screen.width, Screen.height, TextureFormat.RGB24, false);
+    image.ReadPixels (new Rect (0, 0, Screen.width, Screen.height), 0, 0);
+    image.Apply ();
+
+    string myFileName = "domicile_screenshot_" + System.DateTime.Now.Hour + System.DateTime.Now.Minute + System.DateTime.Now.Second + ".png";
+    NativeGallery.Permission permission = NativeGallery.SaveImageToGallery (image, "Domicile VR", myFileName, (success, path) => {
+      if (success) {
+        Debug.Log ("[ScreenshotScript SavePhoto] Successfully saved Screenshot to: " + path);
+      } else {
+        Debug.LogError ("[ScreenshotScript SavePhoto] Error while creating Screenshot.");
+      }
+      callback (success);
+    });
+    Debug.Log ("[ScreenshotScript SavePhoto] Image Permission: " + permission);
+    Destroy (image);
 #else
-    Debug.Log ("Would Save Screenshot only on Android");
+    Debug.Log ("[ScreenshotScript SavePhoto] Would only save Screenshot on Android.");
+    callback (true);
 #endif
-    callback ();
-  }
-
-  // following Screenshot / Java / Android Code copied from:
-  // https://answers.unity.com/questions/204372/saving-screenshots-to-android-gallery.html?_ga=2.33230142.1821600655.1606136243-1256100704.1580052593
-  private const string MediaStoreImagesMediaClass = "android.provider.MediaStore$Images$Media";
-  public static string SaveImageToGallery (Texture2D texture2D, string title, string description) {
-    using (var mediaClass = new AndroidJavaClass (MediaStoreImagesMediaClass)) {
-      using (var cr = Activity.Call<AndroidJavaObject> ("getContentResolver")) {
-        var image = Texture2DToAndroidBitmap (texture2D);
-        var imageUrl = mediaClass.CallStatic<string> ("insertImage", cr, image, title, description);
-        return imageUrl;
-      }
-    }
-  }
-
-  public static AndroidJavaObject Texture2DToAndroidBitmap (Texture2D texture2D) {
-    byte[] encoded = texture2D.EncodeToPNG ();
-    using (var bf = new AndroidJavaClass ("android.graphics.BitmapFactory")) {
-      return bf.CallStatic<AndroidJavaObject> ("decodeByteArray", encoded, 0, encoded.Length);
-    }
-  }
-
-  private static AndroidJavaObject _activity;
-  public static AndroidJavaObject Activity {
-    get {
-      if (_activity == null) {
-        var unityPlayer = new AndroidJavaClass ("com.unity3d.player.UnityPlayer");
-        _activity = unityPlayer.GetStatic<AndroidJavaObject> ("currentActivity");
-      }
-      return _activity;
-    }
   }
 }
