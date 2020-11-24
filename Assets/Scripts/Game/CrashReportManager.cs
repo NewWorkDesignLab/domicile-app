@@ -24,12 +24,12 @@ public class CrashReportManager : MonoBehaviour {
 
         if (type == LogType.Error || type == LogType.Exception) {
             logCollection.isUrgent = true;
-            DataManager.instance.Save<LogCollection> (logCollection, filename, enableSave);
+            DataManager.Save<LogCollection> (logCollection, filename, enableSave);
         }
     }
 
     public void MailLog () {
-        LogCollection loadedData = DataManager.instance.Load<LogCollection> (filename, enableSave);
+        LogCollection loadedData = DataManager.Load<LogCollection> (filename, enableSave);
         string date = DateTime.Now.ToString ("yyyy-MM-ddTHH:mm:sszzz");
 
         if (loadedData != null && loadedData.message != null && loadedData.message.Count > 0 && loadedData.isUrgent) {
@@ -42,7 +42,7 @@ public class CrashReportManager : MonoBehaviour {
                 Debug.Log ("[CrashReportManager MailLog] Successfully send Log.");
             }, () => { });
 #endif
-            StartCoroutine (DataManager.instance.Delete (filename));
+            DataManager.Delete (filename);
         }
     }
 

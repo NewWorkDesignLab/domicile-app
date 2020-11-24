@@ -20,9 +20,9 @@ public class UserManagementInterfaces : MonoBehaviour {
     string email = loginEmailField.text;
     string password = loginPasswordField.text;
     User.SignIn (email, password, (success) => {
-      DataManager.getValue.saveLogin = loginSaveToogle.isOn;
-      DataManager.getValue.userEmail = email;
-      DataManager.instance.Save ();
+      DataManager.persistedData.saveLogin = loginSaveToogle.isOn;
+      DataManager.persistedData.userEmail = email;
+      DataManager.Save ();
       SceneManager.LoadScene ("MainMenuScene");
     });
   }

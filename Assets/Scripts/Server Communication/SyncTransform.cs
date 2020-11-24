@@ -14,7 +14,7 @@ public class SyncTransform : MonoBehaviour {
       oldScale = new Vector3 (1, 1, 1);
 
       string data = JsonUtility.ToJson (new SyncModel (oldPosition, oldRotation, oldScale));
-      var message = new SendMessage ("message", "SpectatorChannel", CrossSceneManager.currentParticipation.id.ToString (), "update_transform", data);
+      var message = new SendMessage ("message", "SpectatorChannel", DataManager.sessionData.participation.id.ToString (), "update_transform", data);
       WebsocketManager.instance.SendData (message);
     }
   }

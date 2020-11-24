@@ -93,9 +93,9 @@ public static class ServerManager {
     }
     isBussy = true;
 
-    string uid = DataManager.getValue.lastKnownUid;
-    string client = DataManager.getValue.lastKnownClient;
-    string accessToken = DataManager.getValue.lastKnownAccessToken;
+    string uid = DataManager.persistedData.lastKnownUid;
+    string client = DataManager.persistedData.lastKnownClient;
+    string accessToken = DataManager.persistedData.lastKnownAccessToken;
     if (!String.IsNullOrEmpty (uid) && !String.IsNullOrEmpty (client) && !String.IsNullOrEmpty (accessToken)) {
       request.SetRequestHeader ("uid", uid);
       request.SetRequestHeader ("client", client);
@@ -114,10 +114,10 @@ public static class ServerManager {
       string _client = request.GetResponseHeader ("client");
       string _accessToken = request.GetResponseHeader ("access-token");
       if (!String.IsNullOrEmpty (_uid) && !String.IsNullOrEmpty (_client) && !String.IsNullOrEmpty (_accessToken)) {
-        DataManager.getValue.lastKnownUid = _uid;
-        DataManager.getValue.lastKnownClient = _client;
-        DataManager.getValue.lastKnownAccessToken = _accessToken;
-        DataManager.instance.Save ();
+        DataManager.persistedData.lastKnownUid = _uid;
+        DataManager.persistedData.lastKnownClient = _client;
+        DataManager.persistedData.lastKnownAccessToken = _accessToken;
+        DataManager.Save ();
         Debug.Log ("[ServerManager RequestHelper] Received new UID, Client and Access-Token.");
       }
       string body = request.downloadHandler.text;

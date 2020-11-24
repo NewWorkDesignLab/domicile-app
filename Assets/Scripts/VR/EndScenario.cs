@@ -13,14 +13,14 @@ public class EndScenario : MonoBehaviour {
   void Start () {
 #if UNITY_EDITOR
     Debug.Log ("[EndScenario Start] Would only upload Screenshots on Android.");
-    CrossSceneManager.instance.ResetEnvironment ();
+    DataManager.ResetSessionData ();
     SceneManager.LoadScene ("MainMenuScene");
 #else
     NativeGallery.Permission permission = NativeGallery.GetImagesFromGallery ((string[] paths) => {
       if (paths != null) {
-        Execution.UploadImages (CrossSceneManager.currentExecution.id, paths, (execution) => {
+        Execution.UploadImages (DataManager.sessionData.execution.id, paths, (execution) => {
           Debug.Log ("[EndScenario Start] Success in Image Upload. Execution: " + execution);
-          CrossSceneManager.instance.ResetEnvironment ();
+          DataManager.ResetSessionData ();
           SceneManager.LoadScene ("MainMenuScene");
         }, () => {
           Debug.LogError ("[EndScenario Start] Error in Image Upload.");

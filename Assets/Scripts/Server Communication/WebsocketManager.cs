@@ -20,9 +20,9 @@ public class WebsocketManager : MonoBehaviour {
 
   void Connect () {
     User.CheckToken ((success) => {
-      string uid = DataManager.getValue.lastKnownUid;
-      string client = DataManager.getValue.lastKnownClient;
-      string accessToken = DataManager.getValue.lastKnownAccessToken;
+      string uid = DataManager.persistedData.lastKnownUid;
+      string client = DataManager.persistedData.lastKnownClient;
+      string accessToken = DataManager.persistedData.lastKnownAccessToken;
       string _protocol = ServerManager.useSecure ? ServerManager.websocketSecure : ServerManager.websocket;
       string _domain = ServerManager.useSecure ? ServerManager.domainSecure : ServerManager.domain;
 
@@ -38,7 +38,7 @@ public class WebsocketManager : MonoBehaviour {
         Debug.Log ("[WebsocketManager onOpen] WebSocket-> Open:");
         Debug.Log ("[WebsocketManager onOpen] Open socket-> OnOpen: " + webSocket.ReadyState);
         isConnected = true;
-        SendData (new SendMessage ("subscribe", "SpectatorChannel", CrossSceneManager.currentParticipation.id.ToString ()), true);
+        SendData (new SendMessage ("subscribe", "SpectatorChannel", DataManager.sessionData.participation.id.ToString ()), true);
       };
       webSocket.OnMessage += (sender, e) => {
         if (e.IsText) {

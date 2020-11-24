@@ -7,7 +7,7 @@ public class ParticipationButton : MonoBehaviour {
   public Participation participation;
 
   public void OnClick () {
-    CrossSceneManager.currentParticipation = participation;
+    DataManager.sessionData.participation = participation;
     UpdateScenario ();
     CreateExecution ();
     SceneManager.LoadScene ("MainScene");
@@ -15,13 +15,13 @@ public class ParticipationButton : MonoBehaviour {
 
   private void UpdateScenario () {
     Scenario.Show (participation.scenario_id, (scenario) => {
-      CrossSceneManager.currentScenario = scenario;
+      DataManager.sessionData.scenario = scenario;
     });
   }
 
   private void CreateExecution () {
     Execution.Create (participation.id, (execution) => {
-      CrossSceneManager.currentExecution = execution;
+      DataManager.sessionData.execution = execution;
     });
   }
 }

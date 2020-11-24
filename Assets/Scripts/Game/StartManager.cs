@@ -3,9 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class StartManager : MonoBehaviour {
     void Start () {
+        DataManager.Load();
+        DataManager.ResetSessionData();
         CrashReportManager.instance.MailLog ();
 
-        if (DataManager.getValue.saveLogin) {
+        if (DataManager.persistedData.saveLogin) {
             User.CheckToken ((success) => {
                 SceneManager.LoadScene ("MainMenuScene");
             }, () => {

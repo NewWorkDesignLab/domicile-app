@@ -73,12 +73,12 @@ public class MainMenuInterfaces : MonoBehaviour {
   }
   public void ButtonSignOut () {
     User.SignOut ((success) => {
-      DataManager.getValue.lastKnownAccessToken = "";
-      DataManager.getValue.lastKnownClient = "";
-      DataManager.getValue.lastKnownUid = "";
-      DataManager.getValue.saveLogin = false;
-      DataManager.getValue.userEmail = "";
-      DataManager.instance.Save ();
+      DataManager.persistedData.lastKnownAccessToken = "";
+      DataManager.persistedData.lastKnownClient = "";
+      DataManager.persistedData.lastKnownUid = "";
+      DataManager.persistedData.saveLogin = false;
+      DataManager.persistedData.userEmail = "";
+      DataManager.Save ();
       SceneManager.LoadScene ("StartScene");
     });
   }
