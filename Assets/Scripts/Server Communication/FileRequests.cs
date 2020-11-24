@@ -14,8 +14,8 @@ public class FileRequests : MonoBehaviour {
         byte[] bytes = File.ReadAllBytes (images[i]);
         form.AddBinaryData ("images[]", bytes, Path.GetFileName (images[i]), "image/png");
       }
-      UnityWebRequest request = UnityWebRequest.Post (String.Format ("{0}{1}", API.instance.host, path), form);
-      StartCoroutine (API.instance.RequestHelper (request, onSuccess, onFailure));
+      UnityWebRequest request = UnityWebRequest.Post (String.Format ("{0}{1}", ServerManager.instance.host, path), form);
+      StartCoroutine (ServerManager.instance.RequestHelper (request, onSuccess, onFailure));
     } else {
       Debug.Log("[FileRequests UploadImages] No Images to upload.");
     }

@@ -14,7 +14,7 @@ public class ScenarioRequests : MonoBehaviour
   }
   public void Index(Action<string> onSuccess, Action<string> onFailure)
   {
-    API.instance.GetRequest("/api/scenarios", "", onSuccess, onFailure);
+    ServerManager.instance.GetRequest("/api/scenarios", "", onSuccess, onFailure);
   }
 
 
@@ -29,6 +29,6 @@ public class ScenarioRequests : MonoBehaviour
   }
   public void Show(int id, Action<string> onSuccess, Action<string> onFailure)
   {
-    API.instance.GetRequest(String.Format("/api/scenarios/{0}", id), "", onSuccess, onFailure);
+    ServerManager.instance.GetRequest(String.Format("/api/scenarios/{0}", id), "", onSuccess, onFailure);
   }
 }

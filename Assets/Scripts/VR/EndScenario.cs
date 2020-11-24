@@ -14,7 +14,7 @@ public class EndScenario : MonoBehaviour {
 #if PLATFORM_ANDROID
     NativeGallery.Permission permission = NativeGallery.GetImagesFromGallery ((string[] paths) => {
       if (paths != null) {
-        API.execution.UploadImages (CrossSceneManager.currentExecution.id, paths, (success) => {
+        ServerManager.execution.UploadImages (CrossSceneManager.currentExecution.id, paths, (success) => {
           Debug.Log ("[EndScenario Start] " + success);
           CrossSceneManager.instance.ResetEnvironment ();
           SceneManager.LoadScene ("MainMenuScene");
