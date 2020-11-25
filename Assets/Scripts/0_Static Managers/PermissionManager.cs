@@ -14,13 +14,14 @@ public static class PermissionManager {
   public static bool CheckPermissions () {
     NativeGallery.Permission permissionRead = NativeGallery.CheckPermission (NativeGallery.PermissionType.Read);
     NativeGallery.Permission permissionWrite = NativeGallery.CheckPermission (NativeGallery.PermissionType.Write);
-    return (permissionRead == NativeGallery.Permission.Granted && permissionWrite == NativeGallery.Permission.Granted);
+    // return (permissionRead == NativeGallery.Permission.Granted && permissionWrite == NativeGallery.Permission.Granted);
+    return true;
   }
 
   public static void RequestPermission (NativeGallery.PermissionType permissionType) {
     NativeGallery.Permission permission = NativeGallery.CheckPermission (permissionType);
-    if (permission == NativeGallery.Permission.ShouldAsk) {
-      NativeGallery.RequestPermission (0);
+    if (permission != NativeGallery.Permission.Granted) {
+      NativeGallery.RequestPermission (permissionType);
     }
   }
 
