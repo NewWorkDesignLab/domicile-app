@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour {
     public static HUD instance;
+    public GameObject hudGroup;
     public Text notificationText;
     public Text roomDisplayText;
     public GameObject crouchIcon;
@@ -13,6 +14,13 @@ public class HUD : MonoBehaviour {
 
     void Awake () {
         instance = this;
+    }
+
+    public void HideHUD () {
+        hudGroup.SetActive (false);
+    }
+    public void ShowHUD () {
+        hudGroup.SetActive (true);
     }
 
     public void ShowNotification (string text) {

@@ -18,8 +18,6 @@ public class VRControls : MonoBehaviour {
   public float menuCrawlScale = .0025f;
   PlayerStatus playerStatus;
 
-  private Coroutine onWalkCloseMenu;
-
   void Awake () {
     instance = this;
   }
@@ -31,16 +29,6 @@ public class VRControls : MonoBehaviour {
   void Update () {
     if (playerStatus == PlayerStatus.walk) {
       MovePlayer ();
-      if (onWalkCloseMenu == null && IngameMenuScript.instance.mainMenu.gameObject.active) {
-        onWalkCloseMenu = StartCoroutine (CloseMenuAfterConstantWalk ());
-      }
-    }
-    if (Input.touchCount > 0) {
-      IngameMenuScript.instance.mainMenu.SetActive (false);
-      IngameMenuScript.instance.menuButton.SetActive (false);
-      ScreenshotScript.instance.TakeScreenshot ((success) => {
-        IngameMenuScript.instance.menuButton.SetActive (true);
-      });
     }
   }
 
@@ -89,15 +77,6 @@ public class VRControls : MonoBehaviour {
     } else {
       SetModeIdle ();
     }
-  }
-
-  private IEnumerator CloseMenuAfterConstantWalk () {
-    yield return new WaitForSeconds (1f);
-    if (playerStatus == PlayerStatus.walk) {
-      IngameMenuScript.instance.mainMenu.SetActive (false);
-      IngameMenuScript.instance.menuButton.SetActive (true);
-    }
-    onWalkCloseMenu = null;
   }
 }
 
