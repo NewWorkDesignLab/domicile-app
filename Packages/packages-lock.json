@@ -1,5 +1,15 @@
 {
   "dependencies": {
+    "com.google.xr.cardboard": {
+      "version": "https://github.com/googlevr/cardboard-xr-plugin.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.xr.management": "3.2.9",
+        "com.unity.xr.legacyinputhelpers": "2.1.4"
+      },
+      "hash": "38cb0047bbc1b5a56c113164c9915fe2d22bc664"
+    },
     "com.nwdl.muvr": {
       "version": "git@github.com:NewWorkDesignLab/muvr-test.git",
       "depth": 0,
