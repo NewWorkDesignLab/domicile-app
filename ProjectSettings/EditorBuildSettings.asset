@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Samples/Multi User VR Kit/0.0.1/Network Demo/Scenes/MUVR_CoreDemoLobby.unity
+    guid: 56779c775f718f443a48706b316cb843
+  - enabled: 1
+    path: Assets/Samples/Multi User VR Kit/0.0.1/Network Demo/Scenes/MUVR_CoreDemoScene.unity
+    guid: 228005e0ed9b776418bd0a9fe8b8fc20
   m_configObjects: {}
