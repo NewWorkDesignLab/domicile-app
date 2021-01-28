@@ -105,7 +105,7 @@ public static class ServerManager {
         Debug.Log (String.Format ("[ServerManager RequestHelper] Sending new Request: {0} {1}", request.method, request.url));
         yield return request.SendWebRequest ();
 
-        if (request.isNetworkError || request.isHttpError) {
+        if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError) {
             string body = request.downloadHandler.text;
             Debug.LogError ("[ServerManager RequestHelper] Error in Request Execution. OnFailure Callback ist going to be called.\nRequest Error: " + request.error + "\nDownloadHandler Text: " + body);
             onFailure ();
