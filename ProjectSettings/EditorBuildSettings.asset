@@ -4,6 +4,9 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/0_ApplicationEntranceScene.unity
+    guid: 4b345cff34a55ab218a5e02c53e3d2fe
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 9c12a0b0c5a35e4139e53e9cf9740e66, type: 2}
