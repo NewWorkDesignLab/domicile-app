@@ -6,7 +6,6 @@ using UnityEngine;
 
 public static class DataManager {
     public static PersistedData persistedData;
-    public static SessionData sessionData;
     private static string fileName = "data.dat";
     private static bool useSaveFile = true;
 
@@ -58,10 +57,6 @@ public static class DataManager {
             }
         }
     }
-
-    public static void ResetSessionData () {
-        sessionData = new SessionData ();
-    }
 }
 
 [Serializable]
@@ -72,10 +67,4 @@ public class PersistedData {
     public string lastKnownAccessToken;
     public string userEmail;
     public bool saveLogin;
-}
-
-public class SessionData {
-    public Scenario scenario;
-    public Participation participation;
-    public Execution execution;
 }
