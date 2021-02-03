@@ -2,17 +2,23 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ApplicationEntranceScript : MonoBehaviour {
-    public GameObject permissionPrefab;
+    public PermissionPopupComponent permissionPrefab;
 
     void Start () {
         SetupDataManager ();
         SetupCrashReportManager ();
         SetupDeepLinkManager ();
+        StartProcedure ();
+    }
 
+    public void StartProcedure () {
         // check android permissions for storage read/write (required for screenshots)
         PermissionManager.ManagePermissions (() => {
-            // on permission not granted
-            OpenPermissionPopup ();
+            // on permission denied
+            permissionPrefab.OpenPopupDenied ();
+        }, () => {
+            // on permission should ask
+            permissionPrefab.OpenPopupShouldAsk ();
         }, () => {
             // on permission granted
             // check if user is logged in and session still valid
@@ -37,9 +43,5 @@ public class ApplicationEntranceScript : MonoBehaviour {
 
     private void SetupDeepLinkManager () {
         DeepLinkManager.SetupHook ();
-    }
-
-    private void OpenPermissionPopup () {
-        // TODO
     }
 }

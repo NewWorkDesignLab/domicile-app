@@ -5,13 +5,11 @@ using UnityEngine;
 
 public class SingeltonHelper : MonoBehaviour {
     public static List<SingeltonHelper> instances;
-    public string type;
+    private string type;
 
     void Awake () {
-        if (type == null) {
-            Debug.LogWarning ("[Singleton Awake] Singleton has no Type defined. Singleton Setup will be skipped.");
-            return;
-        }
+        type = this.gameObject.name;
+
         if (instances == null)
             instances = new List<SingeltonHelper> ();
 
