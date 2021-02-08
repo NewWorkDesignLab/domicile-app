@@ -87,6 +87,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonReference: {fileID: 2598789025020342368}
   buttonImageReference: {fileID: 2598789025020342371}
+  buttonLayoutGroup: {fileID: 2598789025020342369}
+  buttonRectTransform: {fileID: 2598789025020342367}
   textReference: {fileID: 2598789024375916882}
   buttonType: 0
   buttonTextLocaleName: 

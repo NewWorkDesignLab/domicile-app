@@ -30,14 +30,14 @@ MonoBehaviour:
     sich kostenfrei registrieren."
   loginSceneEmailInputLabel: 'E-Mail:'
   loginSceneEmailInputPlaceholder: example@gmail.com
-  loginSceneEmailInputSmall: "Bitte geben Sie die Email-Adresse ihres Domicile-Accounts
-    ein. W\xE4rend der Entwicklung kann info@tobiasbohn.com genutzt werden."
+  loginSceneEmailInputSmall: Bitte geben Sie die Email-Adresse ihres Domicile-Accounts
+    ein.
   loginScenePasswordInputLabel: 'Passwort:'
   loginScenePasswordInputPlaceholder: '********'
-  loginScenePasswordInputSmall: "Bitte geben Sie das Passwort ihres Domicile-Accounts
-    ein. W\xE4rend der Entwicklung kann 12345678 genutzt werden. "
+  loginScenePasswordInputSmall: Bitte geben Sie das Passwort ihres Domicile-Accounts
+    ein.
   loginSceneSubmitButton: Anmelden
-  loginSceneLoginError: Login Error
-  loginSceneDashboardButton: Dashboard Button
-  loginSceneRegistrationButton: Registration Button
-  loginSceneForgotPasswordButton: Forgot Password Button
+  loginSceneLoginError: TODO
+  loginSceneDashboardButton: "Dashboard \xF6ffnen"
+  loginSceneRegistrationButton: Registrieren
+  loginSceneForgotPasswordButton: "Passwort zur\xFCcksetzen"

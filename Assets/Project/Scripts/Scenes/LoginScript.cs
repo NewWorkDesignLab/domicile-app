@@ -37,4 +37,7 @@ public class LoginScript : MonoBehaviour {
     public void OpenBrowserResendConfirmation () {
         Application.OpenURL (String.Format ("{0}/benutzer/bestaetigen/neu", ServerManager.Host ()));
     }
+    public void OpenBrowserDashboard () {
+        Application.OpenURL (String.Format ("{0}/dashboard", ServerManager.Host ()));
+    }
 }

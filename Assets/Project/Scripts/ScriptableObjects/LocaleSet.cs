@@ -2,8 +2,6 @@ using UnityEngine;
 
 [CreateAssetMenu (fileName = "defaultLocaleSet", menuName = "Domicile/LocaleSet", order = 1)]
 public class LocaleSet : ScriptableObject {
-    [Header ("General")]
-
     [Header ("Android Permissions")]
     public string manualPermissionHeading;
     public string manualPermissionDescriptionShouldAsk;

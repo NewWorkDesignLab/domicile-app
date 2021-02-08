@@ -4,6 +4,8 @@ using UnityEngine.UI;
 public class ButtonComponent : MonoBehaviour {
     public Button buttonReference;
     public Image buttonImageReference;
+    public VerticalLayoutGroup buttonLayoutGroup;
+    public RectTransform buttonRectTransform;
     public TMPro.TextMeshProUGUI textReference;
 
     [Header ("Custom Button Settings")]
@@ -47,6 +49,17 @@ public class ButtonComponent : MonoBehaviour {
             case ButtonType.Dark:
                 buttonImageReference.color = BootstrapColorHelper.getColor.dark;
                 textReference.color = Color.white;
+                break;
+            case ButtonType.Link:
+                // adjust styling
+                buttonImageReference.enabled = false;
+                textReference.color = Color.blue;
+                textReference.fontStyle = TMPro.FontStyles.Underline;
+                textReference.alignment = TMPro.TextAlignmentOptions.Left;
+                // adjust paddings
+                RectOffset tmpPadding = new RectOffset (0, 0, 0, 0);
+                buttonLayoutGroup.padding = tmpPadding;
+                LayoutRebuilder.MarkLayoutForRebuild (buttonRectTransform);
                 break;
             default:
                 buttonImageReference.color = BootstrapColorHelper.getColor.primary;
