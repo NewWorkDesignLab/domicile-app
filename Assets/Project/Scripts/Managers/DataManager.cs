@@ -7,7 +7,7 @@ using UnityEngine;
 public static class DataManager {
     public static PersistedData persistedData;
     private static string fileName = "data.dat";
-    private static bool useSaveFile = true;
+    private static bool useSaveFile = false; // TODO on Building
 
     public static void Load () {
         persistedData = Load<PersistedData> (fileName, useSaveFile);
@@ -66,5 +66,4 @@ public class PersistedData {
     public string lastKnownClient;
     public string lastKnownAccessToken;
     public string userEmail;
-    public bool saveLogin;
 }

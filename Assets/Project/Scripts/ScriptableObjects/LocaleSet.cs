@@ -12,4 +12,19 @@ public class LocaleSet : ScriptableObject {
     public string manualPermissionSettingsDone;
     public string manualPermissionRecheckPermissionsButton;
     public string manualPermissionOpenSettingsError;
+
+    [Header ("Login Scene")]
+    public string loginSceneHeader;
+    public string loginSceneDescription;
+    public string loginSceneEmailInputLabel;
+    public string loginSceneEmailInputPlaceholder;
+    public string loginSceneEmailInputSmall;
+    public string loginScenePasswordInputLabel;
+    public string loginScenePasswordInputPlaceholder;
+    public string loginScenePasswordInputSmall;
+    public string loginSceneSubmitButton;
+    public string loginSceneLoginError;
+    public string loginSceneDashboardButton;
+    public string loginSceneRegistrationButton;
+    public string loginSceneForgotPasswordButton;
 }

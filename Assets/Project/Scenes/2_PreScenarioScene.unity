@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4822338286896595941, guid: 5d66c9352b6df14a8b951748f9c1b314, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4822338286896595941, guid: 5d66c9352b6df14a8b951748f9c1b314, type: 3}
       propertyPath: m_LocalPosition.x
@@ -573,7 +573,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 719365099380929780, guid: b55033f195074c50bb17a3e46a5ddfcf, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 719365099380929780, guid: b55033f195074c50bb17a3e46a5ddfcf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -674,7 +674,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 421752795821269833, guid: 377ba9b00617ef722a73765ff2ac99ee, type: 3}
       propertyPath: m_Name
-      value: LocaleManager
+      value: ScriptableObjectHelper
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 421752795821269835, guid: 377ba9b00617ef722a73765ff2ac99ee, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 377ba9b00617ef722a73765ff2ac99ee, type: 3}

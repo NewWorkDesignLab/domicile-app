@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 119503cb46bff2fbb8de06be8a2d5030, type: 3}
-  m_Name: locales_de
+  m_Name: deLocaleSet
   m_EditorClassIdentifier: 
   manualPermissionHeading: Fehlende Berechtigungen
   manualPermissionDescriptionShouldAsk: "Diese App ben\xF6tigt einige Berechtigungen,
@@ -24,3 +24,20 @@ MonoBehaviour:
   manualPermissionRecheckPermissionsButton: Berechtigungen erteilen
   manualPermissionOpenSettingsError: "Die Einstellungen konnten nicht ge\xF6ffnet
     werden. "
+  loginSceneHeader: Anmelden
+  loginSceneDescription: "Bitte melden Sie sich mit Ihrem Domicile-Account an, um
+    Szenarien zu \xF6ffnen. Sollten Sie noch keinen Account besitzen, k\xF6nnen Sie
+    sich kostenfrei registrieren."
+  loginSceneEmailInputLabel: 'E-Mail:'
+  loginSceneEmailInputPlaceholder: example@gmail.com
+  loginSceneEmailInputSmall: "Bitte geben Sie die Email-Adresse ihres Domicile-Accounts
+    ein. W\xE4rend der Entwicklung kann info@tobiasbohn.com genutzt werden."
+  loginScenePasswordInputLabel: 'Passwort:'
+  loginScenePasswordInputPlaceholder: '********'
+  loginScenePasswordInputSmall: "Bitte geben Sie das Passwort ihres Domicile-Accounts
+    ein. W\xE4rend der Entwicklung kann 12345678 genutzt werden. "
+  loginSceneSubmitButton: Anmelden
+  loginSceneLoginError: Login Error
+  loginSceneDashboardButton: Dashboard Button
+  loginSceneRegistrationButton: Registration Button
+  loginSceneForgotPasswordButton: Forgot Password Button

@@ -9,6 +9,10 @@ public class PermissionPopupComponent : MonoBehaviour {
     public GameObject popupShouldAsk;
     public GameObject openSettingsError;
 
+    void Awake () {
+        ClosePopups ();
+    }
+
     public void OpenPopupDenied () {
         popupBackground.gameObject.SetActive (true);
         popupDenied.gameObject.SetActive (true);
@@ -19,7 +23,7 @@ public class PermissionPopupComponent : MonoBehaviour {
         popupDenied.gameObject.SetActive (false);
         popupShouldAsk.SetActive (true);
     }
-    public void ClosePopup () {
+    public void ClosePopups () {
         popupBackground.gameObject.SetActive (false);
         popupDenied.gameObject.SetActive (false);
         popupShouldAsk.SetActive (false);
@@ -34,7 +38,7 @@ public class PermissionPopupComponent : MonoBehaviour {
         openSettingsError.SetActive (true);
     }
     public void RecheckPermissions () {
-        ClosePopup ();
+        ClosePopups ();
         applicationEntranceScript.StartProcedure ();
     }
 }

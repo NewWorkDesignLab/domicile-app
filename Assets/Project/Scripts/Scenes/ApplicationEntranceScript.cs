@@ -11,8 +11,19 @@ public class ApplicationEntranceScript : MonoBehaviour {
         StartProcedure ();
     }
 
+    // check for Server Availabillity
     public void StartProcedure () {
-        // check android permissions for storage read/write (required for screenshots)
+        ServerManager.CheckServerAvailabillity (() => {
+            // Servers available
+            CheckAndroidPermissions ();
+        }, () => {
+            // Servers not available
+            // TODO
+        });
+    }
+
+    // check android permissions for storage read/write (required for screenshots)
+    public void CheckAndroidPermissions () {
         PermissionManager.ManagePermissions (() => {
             // on permission denied
             permissionPrefab.OpenPopupDenied ();
@@ -21,14 +32,18 @@ public class ApplicationEntranceScript : MonoBehaviour {
             permissionPrefab.OpenPopupShouldAsk ();
         }, () => {
             // on permission granted
-            // check if user is logged in and session still valid
-            User.CheckToken ((success) => {
-                // on user login success
-                SceneManager.LoadScene ("2_PreScenarioScene");
-            }, () => {
-                // on user login failure
-                SceneManager.LoadScene ("1_LoginScene");
-            });
+            CheckUserAuthentification ();
+        });
+    }
+
+    // check if user is logged in and session still valid
+    public void CheckUserAuthentification () {
+        User.CheckToken ((success) => {
+            // on user login success
+            SceneManager.LoadScene ("2_PreScenarioScene");
+        }, () => {
+            // on user login failure
+            SceneManager.LoadScene ("1_LoginScene");
         });
     }
 

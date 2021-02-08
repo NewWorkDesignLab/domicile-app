@@ -16,6 +16,11 @@ public static class ServerManager {
     private static bool isBussy = false;
     private static List<RequestQueueEntry> requestQueue;
 
+    public static void CheckServerAvailabillity (Action onSuccess, Action onFailure) {
+        onSuccess();
+        // TODO
+    }
+
     public static void GetRequest (string path, string jsonData, Action<string> onSuccess, Action onFailure) {
         string method = UnityWebRequest.kHttpVerbGET;
         JsonRequestHelper (method, path, jsonData, onSuccess, onFailure);
