@@ -7,7 +7,7 @@ using UnityEngine;
 public static class DataManager {
     public static PersistedData persistedData;
     private static string fileName = "data.dat";
-    private static bool useSaveFile = false; // TODO on Building
+    private static bool useSaveFile = true; // TODO on Building
 
     public static void Load () {
         persistedData = Load<PersistedData> (fileName, useSaveFile);

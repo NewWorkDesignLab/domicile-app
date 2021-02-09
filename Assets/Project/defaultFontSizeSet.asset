@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4526589cfb16fc16a90a4fdd728e12b, type: 3}
   m_Name: defaultFontSizeSet
   m_EditorClassIdentifier: 
+  bigHeaderFontSize: 70
   headerFontSize: 52
   textFontSize: 42
   smallFontSize: 32
