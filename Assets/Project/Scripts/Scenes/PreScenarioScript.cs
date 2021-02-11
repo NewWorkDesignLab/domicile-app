@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class PreScenarioScript : MonoBehaviour {
     public GameObject loadingIndicator;
-    public ParticipationPopupComponent participationPopup;
+    public ScenarioPopupComponent scenarioPopup;
     public GameObject overviewContent;
+    private bool continueSessionDataCheck = false;
 
     void Start () {
         loadingIndicator.SetActive (true);
@@ -14,34 +15,58 @@ public class PreScenarioScript : MonoBehaviour {
         CheckSessionData ();
     }
 
+    void Update () {
+        if (continueSessionDataCheck) {
+            CheckSessionData ();
+        }
+    }
+
     public void CheckSessionData () {
-        switch (SessionManager.CurrentStatus ()) {
-            case SessionStates.Null:
-                participationPopup.OpenPopupEnterParticipation ();
+        switch (SessionManager.status) {
+            case SessionStatus.Null:
+                continueSessionDataCheck = false;
+                if (SessionManager.errorInLoading) {
+                    scenarioPopup.ShowError ();
+                } else {
+                    scenarioPopup.OpenPopupEnterScenario ();
+                }
                 break;
-            case SessionStates.Defined:
-                SessionManager.LoadSession (() => {
+            case SessionStatus.Loading:
+                continueSessionDataCheck = true;
+                break;
+            case SessionStatus.OnHold:
+                continueSessionDataCheck = false;
+                SessionManager.ContinueOnHold (() => {
+                    // load Session Success
                     RenderInformations ();
                 }, () => {
-                    participationPopup.ShowError ();
+                    // load Session Error
+                    CheckSessionData ();
                 });
                 break;
-            case SessionStates.Loaded:
+            case SessionStatus.Ready:
+                continueSessionDataCheck = false;
                 RenderInformations ();
                 break;
             default:
-                participationPopup.OpenPopupEnterParticipation ();
+                continueSessionDataCheck = false;
+                scenarioPopup.ShowError ();
                 break;
         }
     }
 
-    public void ButtonDefineParticipation () {
-        string input = participationPopup.enterParticipationInputGroup.inputFieldReference.text;
+    public void ButtonDefineScenario () {
+        scenarioPopup.ClosePopups ();
+        string input = scenarioPopup.enterScenarioInputGroup.inputFieldReference.text;
         int id = int.Parse (input);
-        SessionManager.DefineParticipation (id);
-        CheckSessionData ();
+        SessionManager.DefineScenario (id, () => {
+            // load Session Success
+            RenderInformations ();
+        }, () => {
+            // load Session Error
+            CheckSessionData ();
+        });
     }
-
     public void ButtonJoinScenario () {
         Application.OpenURL (String.Format ("{0}/teilnahmen/neu", ServerManager.Host ()));
     }
@@ -52,7 +77,7 @@ public class PreScenarioScript : MonoBehaviour {
     public void RenderInformations () {
         // TODO display info on Screen
         loadingIndicator.SetActive (false);
-        participationPopup.ClosePopups ();
+        scenarioPopup.ClosePopups ();
         overviewContent.SetActive (true);
     }
 

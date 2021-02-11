@@ -4,21 +4,22 @@ using UnityEngine;
 
 public static class DeepLinkManager {
     public static bool activatedViaLink = false;
-    public static string refUrl;
-    public static string refQuery;
-    public static int refParticipation;
+    public static string url;
+    public static string query;
+    public static int scenario;
 
     public static void SetupHook () {
         ImaginationOverflow.UniversalDeepLinking.DeepLinkManager.Instance.LinkActivated += Action;
     }
 
     static void Action (ImaginationOverflow.UniversalDeepLinking.LinkActivation activation) {
-        // Link Scheme: domicile://open?p=participation_id
+        // Link Scheme: domicile://open?s=scenario_id
+        // Example: domicile://open?s=98012
         Debug.Log ("[DeepLinkManager Action] Application called via DeepLink.");
         activatedViaLink = true;
-        refUrl = activation.Uri;
-        refQuery = activation.RawQueryString;
-        refParticipation = int.Parse (activation.QueryString["p"]);
-        SessionManager.DefineParticipation (refParticipation);
+        url = activation.Uri;
+        query = activation.RawQueryString;
+        scenario = int.Parse (activation.QueryString["s"]);
+        SessionManager.DefineScenario (scenario, () => { }, () => { });
     }
 }

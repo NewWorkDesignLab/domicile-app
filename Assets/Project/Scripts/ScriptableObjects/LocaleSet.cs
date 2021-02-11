@@ -26,16 +26,16 @@ public class LocaleSet : ScriptableObject {
     public string loginSceneRegistrationButton;
     public string loginSceneForgotPasswordButton;
 
-    [Header ("Participation Popup")]
-    public string participationPopupHeader;
-    public string participationPopupText;
-    public string participationPopupInputLabel;
-    public string participationPopupInputPlaceholder;
-    public string participationPopupInputSmall;
-    public string participationPopupButton;
-    public string participationPopupJoinScenarioButton;
-    public string participationDashboardButton;
-    public string participationPopupError;
+    [Header ("Scenario Popup")]
+    public string scenarioPopupHeader;
+    public string scenarioPopupText;
+    public string scenarioPopupInputLabel;
+    public string scenarioPopupInputPlaceholder;
+    public string scenarioPopupInputSmall;
+    public string scenarioPopupButton;
+    public string scenarioPopupJoinScenarioButton;
+    public string scenarioPopupDashboardButton;
+    public string scenarioPopupError;
 
     [Header ("Scenario Overview")]
     public string scenarioOverviewHeading;

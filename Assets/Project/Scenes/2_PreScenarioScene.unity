@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 205712430}
   - component: {fileID: 205712429}
   m_Layer: 5
-  m_Name: OpenSettingsError
+  m_Name: EnterScenarioError
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8962171cfb5797ed0919ec11a187fc65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localeName: participationPopupError
+  localeName: scenarioPopupError
 --- !u!114 &205712431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -735,7 +735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8962171cfb5797ed0919ec11a187fc65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localeName: participationPopupHeader
+  localeName: scenarioPopupHeader
 --- !u!114 &790053035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -982,7 +982,7 @@ GameObject:
   - component: {fileID: 885368469}
   - component: {fileID: 885368468}
   m_Layer: 5
-  m_Name: ParticipationPopups
+  m_Name: ScenarioPopups
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1022,9 +1022,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupBackground: {fileID: 450740350}
-  popupEnterParticipation: {fileID: 1927120298}
-  enterParticipationInputGroup: {fileID: 2060744587}
-  enterParticipationError: {fileID: 205712427}
+  popupEnterScenario: {fileID: 1927120298}
+  enterScenarioInputGroup: {fileID: 2060744587}
+  enterScenarioError: {fileID: 205712427}
 --- !u!222 &885368469
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1240,7 +1240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2598789023667623273, guid: 5eb1c1442dd685433bfbecb5c403cd6d, type: 3}
       propertyPath: buttonTextLocaleName
-      value: participationDashboardButton
+      value: scenarioPopupDashboardButton
       objectReference: {fileID: 0}
     - target: {fileID: 2598789023667623273, guid: 5eb1c1442dd685433bfbecb5c403cd6d, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.size
@@ -1778,7 +1778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2598789023667623273, guid: 5eb1c1442dd685433bfbecb5c403cd6d, type: 3}
       propertyPath: buttonTextLocaleName
-      value: participationPopupButton
+      value: scenarioPopupButton
       objectReference: {fileID: 0}
     - target: {fileID: 2598789023667623273, guid: 5eb1c1442dd685433bfbecb5c403cd6d, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.size
@@ -1798,7 +1798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2598789023667623273, guid: 5eb1c1442dd685433bfbecb5c403cd6d, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ButtonDefineParticipation
+      value: ButtonDefineScenario
       objectReference: {fileID: 0}
     - target: {fileID: 2598789023667623273, guid: 5eb1c1442dd685433bfbecb5c403cd6d, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1956,7 +1956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingIndicator: {fileID: 691884870}
-  participationPopup: {fileID: 885368468}
+  scenarioPopup: {fileID: 885368468}
   overviewContent: {fileID: 628147466}
 --- !u!1001 &1530937450
 PrefabInstance:
@@ -2079,7 +2079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8962171cfb5797ed0919ec11a187fc65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localeName: participationPopupText
+  localeName: scenarioPopupText
 --- !u!114 &1673451155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2191,7 +2191,7 @@ GameObject:
   - component: {fileID: 1927120299}
   - component: {fileID: 1927120300}
   m_Layer: 5
-  m_Name: EnterParticipation
+  m_Name: EnterScenario
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2550,7 +2550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2598789023667623273, guid: 5eb1c1442dd685433bfbecb5c403cd6d, type: 3}
       propertyPath: buttonTextLocaleName
-      value: participationPopupJoinScenarioButton
+      value: scenarioPopupJoinScenarioButton
       objectReference: {fileID: 0}
     - target: {fileID: 2598789023667623273, guid: 5eb1c1442dd685433bfbecb5c403cd6d, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.size
@@ -2744,15 +2744,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2360833854218206786, guid: 009e6b20f4845a455a3369dda7a9f887, type: 3}
       propertyPath: labelLocaleName
-      value: participationPopupInputLabel
+      value: scenarioPopupInputLabel
       objectReference: {fileID: 0}
     - target: {fileID: 2360833854218206786, guid: 009e6b20f4845a455a3369dda7a9f887, type: 3}
       propertyPath: smallLocaleName
-      value: participationPopupInputSmall
+      value: scenarioPopupInputSmall
       objectReference: {fileID: 0}
     - target: {fileID: 2360833854218206786, guid: 009e6b20f4845a455a3369dda7a9f887, type: 3}
       propertyPath: placeholderLocaleName
-      value: participationPopupInputPlaceholder
+      value: scenarioPopupInputPlaceholder
       objectReference: {fileID: 0}
     - target: {fileID: 2360833854218206798, guid: 009e6b20f4845a455a3369dda7a9f887, type: 3}
       propertyPath: m_Name

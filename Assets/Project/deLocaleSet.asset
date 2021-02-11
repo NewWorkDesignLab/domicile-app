@@ -41,17 +41,17 @@ MonoBehaviour:
   loginSceneDashboardButton: "Dashboard \xF6ffnen"
   loginSceneRegistrationButton: Registrieren
   loginSceneForgotPasswordButton: "Passwort zur\xFCcksetzen"
-  participationPopupHeader: Szenario laden
-  participationPopupText: "Um ein Szenario zu laden, m\xFCssen Sie diesem beigetreten
-    sein. Im Anschluss k\xF6nnen Sie das Szenario ausf\xFChren."
-  participationPopupInputLabel: 'Teilnahme-ID:'
-  participationPopupInputPlaceholder: Teilnahme-ID
-  participationPopupInputSmall: "Bitte tragen Sie die ID der Teilnahme ein, welche
-    Sie ausf\xFChren m\xF6chten."
-  participationPopupButton: Szenario laden
-  participationPopupJoinScenarioButton: Einem Szenario beitreten
-  participationDashboardButton: "Dashboard \xF6ffnen"
-  participationPopupError: Es ist ein Fehler beim Laden des Szenarios aufgetreten.
+  scenarioPopupHeader: Szenario laden
+  scenarioPopupText: "Um ein Szenario zu laden, m\xFCssen Sie diesem beigetreten
+    sein. Im Anschluss k\xF6nnen Sie das Szenario ausf\xFChren. "
+  scenarioPopupInputLabel: 'Szenario-ID:'
+  scenarioPopupInputPlaceholder: Szenario-ID
+  scenarioPopupInputSmall: "Bitte tragen Sie die ID des Szenarios ein, welches Sie
+    ausf\xFChren m\xF6chten. "
+  scenarioPopupButton: Szenario laden
+  scenarioPopupJoinScenarioButton: Einem Szenario beitreten
+  scenarioPopupDashboardButton: "Dashboard \xF6ffnen"
+  scenarioPopupError: 'Es ist ein Fehler beim Laden des Szenarios aufgetreten. '
   scenarioOverviewHeading: "Szenario \xDCbersicht"
   scenarioOverviewDescription: "Das Szenario wurde geladen und kann nun ausgef\xFChrt
     werden. Bitte \xFCberpr\xFCfen Sie die unten stehenden Daten, und starten Sie

@@ -68,4 +68,27 @@ public class Participation {
 [Serializable]
 public class ParticipationGroup {
     public Participation[] participations;
+
+    public Participation Where<T> (string key, T target) {
+        // check if the requested key is available
+        var field = typeof (Participation).GetField (key);
+        if (field != null) {
+            // iterate thru participations and find the one
+            foreach (Participation p in participations) {
+                // if correct participation found
+                // using .Equals() because of generic Type T
+                // (https://stackoverflow.com/questions/8982645/how-to-solve-operator-cannot-be-applied-to-operands-of-type-t-and-t)
+                T value = (T) field.GetValue (p);
+                if (value.Equals (target)) {
+                    return p;
+                }
+            }
+            // no entry found
+            Debug.LogWarning ("[ParticipationGroup Where] No Participation fits the requested value.");
+            return null;
+        } else {
+            Debug.LogError ("[ParticipationGroup Where] Requested Key not Found.");
+            return null;
+        }
+    }
 }
