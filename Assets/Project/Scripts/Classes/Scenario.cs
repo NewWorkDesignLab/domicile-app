@@ -5,12 +5,18 @@ using UnityEngine;
 public class Scenario {
     public int id;
     public int user_id;
-    public DateTime created_at;
-    public DateTime updated_at;
     public string name;
     public int number_rooms;
     public int time_limit;
     public int number_damages;
+    /// <summary>Date and Time of the creation of this Scenario as String. (Required for JSON deserialization)</summary>
+    public string created_at;
+    /// <summary>Date and Time of the last modification of the Scenario as String. (Required for JSON deserialization)</summary>
+    public string updated_at;
+    /// <summary>Date and Time of the creation of this Scenario as Unity DateTime.</summary>
+    public DateTime datetime_created_at { get { return System.DateTime.Parse (created_at); } }
+    /// <summary>Date and Time of the creation of this Scenario as Unity DateTime.</summary>
+    public DateTime datetime_updated_at { get { return System.DateTime.Parse (updated_at); } }
 
     public static void Index (Action<ScenarioGroup> onSuccess) {
         Index (onSuccess, () => { });

@@ -7,6 +7,11 @@ public class PreScenarioScript : MonoBehaviour {
     public GameObject loadingIndicator;
     public ScenarioPopupComponent scenarioPopup;
     public GameObject overviewContent;
+    public TMPro.TextMeshProUGUI scenarioIdReference;
+    public TMPro.TextMeshProUGUI scenarioRoomsReference;
+    public TMPro.TextMeshProUGUI scenarioTimeReference;
+    public TMPro.TextMeshProUGUI scenarioDamageReference;
+    public TMPro.TextMeshProUGUI scenarioJoinedAtReference;
     private bool continueSessionDataCheck = false;
 
     void Start () {
@@ -75,9 +80,15 @@ public class PreScenarioScript : MonoBehaviour {
     }
 
     public void RenderInformations () {
-        // TODO display info on Screen
-        loadingIndicator.SetActive (false);
         scenarioPopup.ClosePopups ();
+
+        scenarioIdReference.text = LocaleHelper.GetContent ("scenarioOverviewScenarioID") + " " + SessionManager.scenario.id;
+        scenarioRoomsReference.text = String.Format (LocaleHelper.GetContent ("scenarioOverviewScenarioRooms"), SessionManager.scenario.number_rooms);
+        scenarioTimeReference.text = String.Format (LocaleHelper.GetContent ("scenarioOverviewScenarioTime"), SessionManager.scenario.time_limit);
+        scenarioDamageReference.text = String.Format (LocaleHelper.GetContent ("scenarioOverviewScenarioDamages"), SessionManager.scenario.number_damages);
+        scenarioJoinedAtReference.text = LocaleHelper.GetContent ("scenarioOverviewScenarioJoinedAt") + " " + SessionManager.participation.datetime_created_at;
+
+        loadingIndicator.SetActive (false);
         overviewContent.SetActive (true);
     }
 

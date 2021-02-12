@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bigHeaderFontSize: 70
   headerFontSize: 52
+  subheadingFontSize: 48
   textFontSize: 42
   smallFontSize: 32

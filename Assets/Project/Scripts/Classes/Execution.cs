@@ -12,10 +12,14 @@ public class Execution {
     public int id;
     /// <summary>ID of the associated participation.</summary>
     public int participation_id;
-    /// <summary>Date and Time of the creation of this Execution.</summary>
-    public DateTime created_at;
-    /// <summary>Date and Time of the last modification of the Execution.</summary>
-    public DateTime updated_at;
+    /// <summary>Date and Time of the creation of this Execution as String. (Required for JSON deserialization)</summary>
+    public string created_at;
+    /// <summary>Date and Time of the last modification of the Execution as String. (Required for JSON deserialization)</summary>
+    public string updated_at;
+    /// <summary>Date and Time of the creation of this Execution as Unity DateTime.</summary>
+    public DateTime datetime_created_at { get { return System.DateTime.Parse (created_at); } }
+    /// <summary>Date and Time of the creation of this Execution as Unity DateTime.</summary>
+    public DateTime datetime_updated_at { get { return System.DateTime.Parse (updated_at); } }
 
     /// <summary>
     /// Generates an API call to the web server, which creates an execution.

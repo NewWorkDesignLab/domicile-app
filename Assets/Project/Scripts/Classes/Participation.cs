@@ -13,10 +13,14 @@ public class Participation {
     public int user_id;
     /// <summary>ID of the associated Scenario.</summary>
     public int scenario_id;
-    /// <summary>Date and Time of the creation of this Participation.</summary>
-    public DateTime created_at;
-    /// <summary>Date and Time of the last modification of the Participation.</summary>
-    public DateTime updated_at;
+    /// <summary>Date and Time of the creation of this Participation as String. (Required for JSON deserialization)</summary>
+    public string created_at;
+    /// <summary>Date and Time of the last modification of the Participation as String. (Required for JSON deserialization)</summary>
+    public string updated_at;
+    /// <summary>Date and Time of the creation of this Participation as Unity DateTime.</summary>
+    public DateTime datetime_created_at { get { return System.DateTime.Parse (created_at); } }
+    /// <summary>Date and Time of the creation of this Participation as Unity DateTime.</summary>
+    public DateTime datetime_updated_at { get { return System.DateTime.Parse (updated_at); } }
 
     /// <summary>
     /// Generates an API query to retrieve a list of all participations of a User.

@@ -4,6 +4,7 @@ using UnityEngine;
 public class FontSizeSet : ScriptableObject {
     public int bigHeaderFontSize;
     public int headerFontSize;
+    public int subheadingFontSize;
     public int textFontSize;
     public int smallFontSize;
 }
