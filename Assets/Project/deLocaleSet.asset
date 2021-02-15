@@ -56,9 +56,12 @@ MonoBehaviour:
   scenarioOverviewDescription: "Das Szenario wurde geladen und kann nun ausgef\xFChrt
     werden. Bitte \xFCberpr\xFCfen Sie die unten stehenden Daten, und starten Sie
     anschlie\xDFend die virtuelle Wohnungs\xFCbergabe."
+  scenarioOverviewError: Es gab ein Fehler beim Laden des Szenarios.
   scenarioOverviewScenarioSubheading: "Szenario \xDCbersicht"
   scenarioOverviewScenarioID: 'Szenario ID:'
   scenarioOverviewScenarioRooms: "Anzahl R\xE4ume: {0} Zimmer"
   scenarioOverviewScenarioTime: 'Zeitlimit: {0} Minuten'
   scenarioOverviewScenarioDamages: "Anzahl Sch\xE4den: {0} Sch\xE4den"
   scenarioOverviewScenarioJoinedAt: 'Beigetreten am:'
+  scenarioOverviewButtonExecute: "Szenario \xF6ffnen"
+  scenarioOverviewButtonClose: "Szenario schlie\xDFen"

@@ -8,7 +8,7 @@ public static class SessionManager {
     public static SessionStatus status { get; private set; }
     public static Scenario scenario { get; private set; }
     public static Participation participation { get; private set; }
-    public static Execution execution { get; private set; }
+    public static Execution execution { get; set; }
     public static bool errorInLoading = false;
 
     private static void LoadSession (Action onSuccess, Action onError) {

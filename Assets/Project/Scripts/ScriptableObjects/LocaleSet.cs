@@ -40,10 +40,13 @@ public class LocaleSet : ScriptableObject {
     [Header ("Scenario Overview")]
     public string scenarioOverviewHeading;
     public string scenarioOverviewDescription;
+    public string scenarioOverviewError;
     public string scenarioOverviewScenarioSubheading;
     public string scenarioOverviewScenarioID;
     public string scenarioOverviewScenarioRooms;
     public string scenarioOverviewScenarioTime;
     public string scenarioOverviewScenarioDamages;
     public string scenarioOverviewScenarioJoinedAt;
+    public string scenarioOverviewButtonExecute;
+    public string scenarioOverviewButtonClose;
 }

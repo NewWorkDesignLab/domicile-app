@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PreScenarioScript : MonoBehaviour {
     public GameObject loadingIndicator;
     public ScenarioPopupComponent scenarioPopup;
     public GameObject overviewContent;
+    public GameObject scenarioExecutionError;
     public TMPro.TextMeshProUGUI scenarioIdReference;
     public TMPro.TextMeshProUGUI scenarioRoomsReference;
     public TMPro.TextMeshProUGUI scenarioTimeReference;
@@ -17,6 +19,7 @@ public class PreScenarioScript : MonoBehaviour {
     void Start () {
         loadingIndicator.SetActive (true);
         overviewContent.SetActive (false);
+        scenarioExecutionError.SetActive (false);
         CheckSessionData ();
     }
 
@@ -29,7 +32,7 @@ public class PreScenarioScript : MonoBehaviour {
     public void CheckSessionData () {
         switch (SessionManager.status) {
             case SessionStatus.Null:
-                continueSessionDataCheck = false;
+                continueSessionDataCheck = true;
                 if (SessionManager.errorInLoading) {
                     scenarioPopup.ShowError ();
                 } else {
@@ -54,29 +57,10 @@ public class PreScenarioScript : MonoBehaviour {
                 RenderInformations ();
                 break;
             default:
-                continueSessionDataCheck = false;
+                continueSessionDataCheck = true;
                 scenarioPopup.ShowError ();
                 break;
         }
-    }
-
-    public void ButtonDefineScenario () {
-        scenarioPopup.ClosePopups ();
-        string input = scenarioPopup.enterScenarioInputGroup.inputFieldReference.text;
-        int id = int.Parse (input);
-        SessionManager.DefineScenario (id, () => {
-            // load Session Success
-            RenderInformations ();
-        }, () => {
-            // load Session Error
-            CheckSessionData ();
-        });
-    }
-    public void ButtonJoinScenario () {
-        Application.OpenURL (String.Format ("{0}/teilnahmen/neu", ServerManager.Host ()));
-    }
-    public void ButtonDashboard () {
-        Application.OpenURL (String.Format ("{0}/dashboard", ServerManager.Host ()));
     }
 
     public void RenderInformations () {
@@ -92,7 +76,41 @@ public class PreScenarioScript : MonoBehaviour {
         overviewContent.SetActive (true);
     }
 
-    public void StartScenario () {
+    public void ButtonDefineScenario () {
+        scenarioPopup.ClosePopups ();
+        string input = scenarioPopup.enterScenarioInputGroup.inputFieldReference.text;
+        int id = int.Parse (input);
+        SessionManager.DefineScenario (id, () => {
+            // load Session Success
+            RenderInformations ();
+        }, () => {
+            // load Session Error
+            CheckSessionData ();
+        });
+    }
 
+    public void ButtonJoinScenario () {
+        Application.OpenURL (String.Format ("{0}/teilnahmen/neu", ServerManager.Host ()));
+    }
+
+    public void ButtonDashboard () {
+        Application.OpenURL (String.Format ("{0}/dashboard", ServerManager.Host ()));
+    }
+
+    public void StartScenario () {
+        Execution.Create (SessionManager.participation.id, (execution) => {
+            // Execution Create Success
+            SessionManager.execution = execution;
+            SceneManager.LoadScene ("3_MainScenarioScene");
+        }, () => {
+            // Execution Create Error
+            RenderInformations ();
+            scenarioExecutionError.SetActive (true);
+        });
+    }
+
+    public void CloseScenario () {
+        SessionManager.ResetSession ();
+        SceneManager.LoadScene ("2_PreScenarioScene");
     }
 }
