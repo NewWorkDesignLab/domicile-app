@@ -16,7 +16,8 @@ public class SceneSettingHelper : MonoBehaviour {
 
     private IEnumerator SwitchToVR () {
         // from https://forum.unity.com/threads/toggle-between-2d-and-google-cardboard.902378/
-        Screen.orientation = ScreenOrientation.Landscape;
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+        yield return new WaitForSeconds(.5f);
 #if UNITY_EDITOR
         Debug.Log ("[SceneSettingHelper SwitchToVR] Would Display Scene in Virtual Reality");
         yield return null;
