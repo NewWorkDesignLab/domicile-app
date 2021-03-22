@@ -28,7 +28,7 @@ public class MainScenarioScript : MonoBehaviour {
         Debug.Log ("[MainScenarioScript SetupNetworkingInformations] Used " + val);
         manager.networkAddress = val;
 #else
-        var val = etFromModi (productionServerAddress);
+        var val = SetFromModi (productionServerAddress);
         Debug.Log ("[MainScenarioScript SetupNetworkingInformations] Used " + val);
         manager.networkAddress = val;
 #endif
