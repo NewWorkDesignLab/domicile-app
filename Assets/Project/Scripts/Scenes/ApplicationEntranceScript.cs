@@ -4,15 +4,25 @@ using UnityEngine.SceneManagement;
 public class ApplicationEntranceScript : MonoBehaviour {
     public PermissionPopupComponent permissionPrefab;
 
-    void Start () {
-        SetupDataManager ();
+  void Start()
+  {
+#if UNITY_ANDROID
+        Debug.Log ("[ApplicationEntranceScript Start] Plattform: Android");
+        DataManager.Load ();
         SetupCrashReportManager ();
-        SetupDeepLinkManager ();
+        DeepLinkManager.SetupHook ();
         StartProcedure ();
-    }
+#elif UNITY_WEBGL
+        Debug.Log ("[ApplicationEntranceScript Start] Plattform: WebGL");
+        SceneManager.LoadScene ("3_MainScenarioScene");
+#elif UNITY_STANDALONE_LINUX
+        Debug.Log ("[ApplicationEntranceScript Start] Plattform: Standalone Linux");
+        SceneManager.LoadScene ("3_MainScenarioScene");
+#endif
+  }
 
-    // check for Server Availabillity
-    public void StartProcedure () {
+  // check for Server Availabillity
+  public void StartProcedure () {
         ServerManager.CheckServerAvailabillity (() => {
             // Servers available
             CheckAndroidPermissions ();
@@ -47,16 +57,8 @@ public class ApplicationEntranceScript : MonoBehaviour {
         });
     }
 
-    private void SetupDataManager () {
-        DataManager.Load ();
-    }
-
     private void SetupCrashReportManager () {
         CrashReportManager.MailLog ();
         Application.logMessageReceived += CrashReportManager.LogCallback;
-    }
-
-    private void SetupDeepLinkManager () {
-        DeepLinkManager.SetupHook ();
     }
 }

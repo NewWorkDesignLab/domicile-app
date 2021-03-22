@@ -29,6 +29,9 @@
 # VS Code
 .vscode/
 
+# Expots
+.export/
+
 # Gradle cache directory
 .gradle/
 

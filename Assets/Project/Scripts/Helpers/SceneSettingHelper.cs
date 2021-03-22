@@ -7,11 +7,13 @@ public class SceneSettingHelper : MonoBehaviour {
     public VRSetting vrSetting;
 
     void Start () {
+#if UNITY_ANDROID
         if (vrSetting == VRSetting.VR) {
             StartCoroutine (SwitchToVR ());
         } else {
             SwitchTo2D ();
         }
+#endif
     }
 
     private IEnumerator SwitchToVR () {
