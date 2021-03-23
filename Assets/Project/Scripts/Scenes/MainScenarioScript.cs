@@ -6,7 +6,7 @@ using UnityEngine;
 public class MainScenarioScript : MonoBehaviour {
     public NetworkManager manager;
     public NetworkAddressModi modi;
-    string productionServerAddress = "134.122.84.237";
+    string productionServerAddress = "domicile.tobiasbohn.com";
 
     void Start () {
         SetupNetworkingInformations ();
