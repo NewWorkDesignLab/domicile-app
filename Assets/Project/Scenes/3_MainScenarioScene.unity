@@ -514,7 +514,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 863849047}
-  modi: 2
+  simpleWebTransport: {fileID: 863849049}
+  modi: 0
 --- !u!1001 &1992483198
 PrefabInstance:
   m_ObjectHideFlags: 0
