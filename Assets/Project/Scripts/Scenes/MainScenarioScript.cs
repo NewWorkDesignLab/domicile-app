@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using kcp2k;
 using Mirror;
 using Mirror.SimpleWeb;
 using UnityEngine;
 
-public class MainScenarioScript : MonoBehaviour {
+public class MainScenarioScript : Singleton<MainScenarioScript> {
     public NetworkManager manager;
-    public SimpleWebTransport simpleWebTransport;
-    public NetworkAddressModi modi;
+  public NetworkAddressModi modi;
+  public GameObject productionNetworkManagerPrefab;
+    public GameObject editorNetworkManagerPrefab;
     string productionServerAddress = "domicile.tobiasbohn.com";
 
-    public string webglScenarioID;
+    public int webglScenarioID;
     public bool webglIsPlayer = false;
 
     // Import Javascript Functions from Assets/Plugins/javascript.jslib to run in Brwoser in WebGL, as
@@ -25,7 +27,11 @@ public class MainScenarioScript : MonoBehaviour {
   void Start()
   {
     SetupNetworkingInformations();
-#if UNITY_ANDROID
+#if UNITY_EDITOR
+        Debug.Log ("[MainScenarioScript Start] Plattform: EDITOR");
+        webglScenarioID = Random.Range(12345, 12347);
+        webglIsPlayer = true;
+#elif UNITY_ANDROID
         Debug.Log ("[MainScenarioScript Start] Plattform: Android");
         manager.StartClient ();
 #elif UNITY_WEBGL
@@ -33,8 +39,8 @@ public class MainScenarioScript : MonoBehaviour {
         var _scenarioId = GetScenarioInformationFromBrwoser ();
         var _isPlayer = GetPlayerInformationFromBrwoser ();
         if (_scenarioId != null && _isPlayer != null) {
-            webglScenarioID = _scenarioId;
-            webglIsPlayer = bool.Parse(_isPlayer);
+            webglScenarioID = int.Parse (_scenarioId);
+            webglIsPlayer = bool.Parse (_isPlayer);
             manager.StartClient ();
         }
 #elif UNITY_STANDALONE_LINUX
@@ -45,17 +51,17 @@ public class MainScenarioScript : MonoBehaviour {
 
   private void SetupNetworkingInformations () {
 #if UNITY_EDITOR
+        var instance = Instantiate(editorNetworkManagerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        manager = instance.GetComponent<NetworkManager>();
         var val = SetFromModi ("localhost");
         Debug.Log ("[MainScenarioScript SetupNetworkingInformations] Used " + val);
         manager.networkAddress = val;
-        simpleWebTransport.clientUseWss = false;
-        simpleWebTransport.sslEnabled = false;
 #else
+        var instance = Instantiate(productionNetworkManagerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        manager = instance.GetComponent<NetworkManager>();
         var val = SetFromModi (productionServerAddress);
         Debug.Log ("[MainScenarioScript SetupNetworkingInformations] Used " + val);
         manager.networkAddress = val;
-        simpleWebTransport.clientUseWss = true;
-        simpleWebTransport.sslEnabled = true;
 #endif
     }
 
