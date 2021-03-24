@@ -29,8 +29,9 @@ public class MainScenarioScript : Singleton<MainScenarioScript> {
     SetupNetworkingInformations();
 #if UNITY_EDITOR
         Debug.Log ("[MainScenarioScript Start] Plattform: EDITOR");
-        webglScenarioID = Random.Range(12345, 12347);
-        webglIsPlayer = true;
+        // webglScenarioID = Random.Range(12345, 12347);
+        webglScenarioID = 12345;
+        webglIsPlayer = Random.Range(0, 2) == 1 ? true : false;
 #elif UNITY_ANDROID
         Debug.Log ("[MainScenarioScript Start] Plattform: Android");
         manager.StartClient ();

@@ -57,7 +57,7 @@ MonoBehaviour:
   onlineScene: 
   transport: {fileID: 1925994801030403313}
   networkAddress: localhost
-  maxConnections: 4
+  maxConnections: 10
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
