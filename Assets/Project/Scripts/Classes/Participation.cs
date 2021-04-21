@@ -22,6 +22,7 @@ public class Participation {
     /// <summary>Date and Time of the creation of this Participation as Unity DateTime.</summary>
     public DateTime datetime_updated_at { get { return System.DateTime.Parse (updated_at); } }
 
+
     /// <summary>
     /// Generates an API query to retrieve a list of all participations of a User.
     /// </summary>

@@ -31,6 +31,9 @@
 
 # Expots
 .export/
+/Export/Server/Data/*
+/Export/Android/Data/*
+/Export/WebGL/Data/*
 
 # Gradle cache directory
 .gradle/

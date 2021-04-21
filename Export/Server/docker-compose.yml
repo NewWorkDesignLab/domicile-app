@@ -1,0 +1,9 @@
+services:
+  server:
+    image: domicile_mirror_server:latest
+    restart: always
+    ports:
+      - "7777:7777"
+      - "7778:7778"
+    volumes:
+      - /etc/letsencrypt/live/domicile.tobiasbohn.com/cert.pfx:/domicile/cert.pfx

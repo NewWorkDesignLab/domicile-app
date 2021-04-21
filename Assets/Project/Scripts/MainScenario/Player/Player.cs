@@ -11,12 +11,12 @@ public class Player : NetworkBehaviour {
     public int belongsToScenario;
 
     [SyncVar (hook = nameof (HookPlayer))]
-    public bool isPlayer;
+    public bool isOwner;
 
     void Start () {
         if (isLocalPlayer) {
             Debug.Log ("Is Local Player, going to send command to Server to change info");
-            CmdChangeInfo (MainScenarioScript.instance.webglScenarioID, MainScenarioScript.instance.webglIsPlayer);
+            CmdChangeInfo (SessionManager.scenario.id, SessionManager.IsOwner ());
             cameraHolder.AddComponent (typeof (Camera));
             // Hide own Body
             HidePlayer ();
@@ -24,22 +24,22 @@ public class Player : NetworkBehaviour {
     }
 
     [Command]
-    private void CmdChangeInfo (int _scenarioId, bool _isPlayer) {
+    private void CmdChangeInfo (int _scenarioId, bool _isOwner) {
         // only runs on server, even if called from client
-        Debug.Log ("Changed infos in server side. Values: " + _scenarioId + "; " + _isPlayer);
+        Debug.Log ("Changed infos in server side. Values: " + _scenarioId + "; " + _isOwner);
         belongsToScenario = _scenarioId;
-        isPlayer = _isPlayer;
+        isOwner = _isOwner;
     }
 
     public void HideUnrelatedPlayers () {
         // runs on client
         if (isLocalPlayer) {
-            Debug.Log ("GOING TO HIDE ALL PLAYERS THAT DO NOT BELONG TO " + belongsToScenario + "; IS_PLAYER: " + isPlayer);
+            Debug.Log ("GOING TO HIDE ALL PLAYERS THAT DO NOT BELONG TO " + belongsToScenario + "; IS_OWNER: " + isOwner);
 
             var players = GameObject.FindGameObjectsWithTag ("Player");
             foreach (GameObject p in players) {
                 var playerComp = p.GetComponent<Player> ();
-                if (playerComp.belongsToScenario != belongsToScenario || isPlayer) {
+                if (playerComp.belongsToScenario != belongsToScenario || isOwner) {
                     playerComp.HidePlayer ();
                 } else {
                     playerComp.ShowPlayer ();

@@ -1,26 +1,17 @@
 mergeInto(LibraryManager.library, {
-
-  GetScenarioInformationFromBrwoser: function () {
+  GetParameterFromBrwoser: function (parameterName) {
     var url_string = document.location.href;
     var url = new URL(url_string);
-    var scenario = url.searchParams.get("scenario");
-    console.log("Fetched Data from within Unity: " + scenario);
+    var param = url.searchParams.get(Pointer_stringify(parameterName));
+    console.log("Fetched Data from within Unity JavaScript (" + Pointer_stringify(parameterName) + "): " + param);
 
-    var bufferSize = lengthBytesUTF8(scenario) + 1;
-    var buffer = _malloc(bufferSize);
-    stringToUTF8(scenario, buffer, bufferSize);
-    return buffer;
-  },
-
-  GetPlayerInformationFromBrwoser: function () {
-    var url_string = document.location.href;
-    var url = new URL(url_string);
-    var is_player = url.searchParams.get("is_player");
-    console.log("Fetched Data from within Unity: " + is_player);
-
-    var bufferSize = lengthBytesUTF8(is_player) + 1;
-    var buffer = _malloc(bufferSize);
-    stringToUTF8(is_player, buffer, bufferSize);
-    return buffer;
+    if (param != null && param != "") {
+      var bufferSize = lengthBytesUTF8(param) + 1;
+      var buffer = _malloc(bufferSize);
+      stringToUTF8(param, buffer, bufferSize);
+      return buffer;
+    } else {
+      return null;
+    }
   },
 });

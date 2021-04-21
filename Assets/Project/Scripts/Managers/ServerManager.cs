@@ -11,8 +11,6 @@ public static class ServerManager {
     public static string domainSecure = "domicile.tobiasbohn.com";
     public static string protocol = "http";
     public static string protocolSecure = "https";
-    public static string websocket = "ws";
-    public static string websocketSecure = "wss";
     private static bool isBussy = false;
     private static List<RequestQueueEntry> requestQueue;
 
@@ -50,7 +48,7 @@ public static class ServerManager {
                 form.AddBinaryData ("images[]", bytes, Path.GetFileName (images[i]), "image/png");
             }
             UnityWebRequest request = UnityWebRequest.Post (String.Format ("{0}{1}", Host (), path), form);
-            CheckRequestQueue (new RequestQueueEntry (request, onSuccess, onFailure));
+            AddToRequestQueue (new RequestQueueEntry (request, onSuccess, onFailure));
         } else {
             Debug.Log ("[ServerManager ImageRequest] No Images to upload. OnFailure Callback ist going to be called.");
             onFailure ();
@@ -71,10 +69,10 @@ public static class ServerManager {
             byte[] jsonToSend = new System.Text.UTF8Encoding ().GetBytes (jsonData);
             request.uploadHandler = (UploadHandler) new UploadHandlerRaw (jsonToSend);
         }
-        CheckRequestQueue (new RequestQueueEntry (request, onSuccess, onFailure));
+        AddToRequestQueue (new RequestQueueEntry (request, onSuccess, onFailure));
     }
 
-    private static void CheckRequestQueue (RequestQueueEntry _request) {
+    private static void AddToRequestQueue (RequestQueueEntry _request) {
         if (requestQueue == null)
             requestQueue = new List<RequestQueueEntry> ();
         requestQueue.Add (_request);
@@ -105,7 +103,7 @@ public static class ServerManager {
             request.SetRequestHeader ("uid", uid);
             request.SetRequestHeader ("client", client);
             request.SetRequestHeader ("access-token", accessToken);
-            Debug.Log ("[ServerManager RequestHelper] Used saved UID, Client and Access-Token.");
+            Debug.Log ("[ServerManager RequestHelper] Used saved UID(" + uid + "), Client(" + client + ") and Access-Token(" + accessToken + ").");
         }
         Debug.Log (String.Format ("[ServerManager RequestHelper] Sending new Request: {0} {1}", request.method, request.url));
         yield return request.SendWebRequest ();

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 719365099380929780}
   - component: {fileID: 1068447674930194437}
+  - component: {fileID: 135984007932861312}
   m_Layer: 0
   m_Name: CrossSceneManager
   m_TagString: Untagged
@@ -43,3 +44,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e09c1ee6d69595b179b822ef5bdafff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &135984007932861312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3117354886946413044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fd81072e2cb82623b2870cc6b12795a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  URLParameter: In WebGL Export, the User Authentication and Scenario Selection will
+    be passed via URL Parameters. In Editor, the Parameters cant be fetched, so User
+    Cretentials and ScenarioID defined below are used.
+  debugWebglUrlParameterEmail: info@tobiasbohn.com
+  debugWebglUrlParameterPassword: 12345678
+  debugWebglUrlParameterScenario: 97772

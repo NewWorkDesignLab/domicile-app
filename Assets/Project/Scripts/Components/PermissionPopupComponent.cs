@@ -9,6 +9,7 @@ public class PermissionPopupComponent : MonoBehaviour {
     public GameObject popupShouldAsk;
     public GameObject openSettingsError;
 
+#if UNITY_ANDROID
     void Awake () {
         ClosePopups ();
     }
@@ -39,6 +40,7 @@ public class PermissionPopupComponent : MonoBehaviour {
     }
     public void RecheckPermissions () {
         ClosePopups ();
-        applicationEntranceScript.StartProcedure ();
+        applicationEntranceScript.CheckAndroidPermissions ();
     }
+#endif
 }
