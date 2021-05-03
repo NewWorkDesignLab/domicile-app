@@ -113,7 +113,7 @@ public class ApplicationEntranceScript : MonoBehaviour {
 #endif
             SessionManager.DefineScenario (scenario, () => {
                 // Session Load Success
-                Debug.Log ("[DEBUG ApplicationEntranceScript WebglFinnishEntrance] Loaded Scenario. Is Owner: " + SessionManager.IsOwner());
+                Debug.Log ("[DEBUG ApplicationEntranceScript WebglFinnishEntrance] Loaded Scenario. Is Owner: " + SessionManager.IsOwner ());
                 SceneManager.LoadScene ("3_MainScenarioScene");
             }, () => {
                 // Session Load Error

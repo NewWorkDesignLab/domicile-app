@@ -28,7 +28,7 @@ public class SceneSettingHelper : MonoBehaviour {
         if (XRGeneralSettings.Instance.Manager.activeLoader == null) {
             Debug.LogError ("[SceneSettingHelper SwitchToVR] Initializing XR Failed. Check Editor or Player log for details.");
         } else {
-            Debug.LogError ("[SceneSettingHelper SwitchToVR] Starting XR...");
+            Debug.Log ("[SceneSettingHelper SwitchToVR] Starting XR...");
             XRGeneralSettings.Instance.Manager.StartSubsystems ();
         }
 #endif

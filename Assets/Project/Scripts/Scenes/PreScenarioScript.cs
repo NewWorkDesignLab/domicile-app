@@ -94,7 +94,7 @@ public class PreScenarioScript : MonoBehaviour {
     }
 
     public void ButtonDashboard () {
-        Application.OpenURL (String.Format ("{0}/dashboard", ServerManager.Host ()));
+        Application.OpenURL (String.Format ("{0}/szenarios", ServerManager.Host ()));
     }
 
     public void StartScenario () {

@@ -7,15 +7,11 @@ using UnityEngine;
 
 public class MainScenarioScript : Singleton<MainScenarioScript> {
     public NetworkManager manager;
-    public NetworkAddressModi modi;
-    public GameObject productionNetworkManagerPrefab;
-    public GameObject editorNetworkManagerPrefab;
+    public SimpleWebTransport webTransport;
 
     void Start () {
         SetupNetworkingInformations ();
-#if UNITY_EDITOR
-        Debug.Log ("[MainScenarioScript Start] Plattform: EDITOR");
-#elif UNITY_ANDROID
+#if UNITY_ANDROID
         Debug.Log ("[MainScenarioScript Start] Plattform: Android");
         manager.StartClient ();
 #elif UNITY_WEBGL
@@ -29,32 +25,13 @@ public class MainScenarioScript : Singleton<MainScenarioScript> {
 
     private void SetupNetworkingInformations () {
 #if UNITY_EDITOR
-        var instance = Instantiate (editorNetworkManagerPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
-        manager = instance.GetComponent<NetworkManager> ();
-        var val = SetFromModi ("localhost");
-        Debug.Log ("[MainScenarioScript SetupNetworkingInformations] Used " + val);
-        manager.networkAddress = val;
+        manager.networkAddress = "localhost";
+        webTransport.clientUseWss = false;
+        webTransport.sslEnabled = false;
 #else
-        var instance = Instantiate (productionNetworkManagerPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
-        manager = instance.GetComponent<NetworkManager> ();
-        var val = SetFromModi (ServerManager.domainSecure);
-        Debug.Log ("[MainScenarioScript SetupNetworkingInformations] Used " + val);
-        manager.networkAddress = val;
+        manager.networkAddress = ServerManager.domainSecure;
+        webTransport.clientUseWss = true;
+        webTransport.sslEnabled = true;
 #endif
     }
-
-    private string SetFromModi (string plattformDependent) {
-        switch (modi) {
-            case NetworkAddressModi.auto:
-                return plattformDependent;
-            case NetworkAddressModi.local:
-                return "localhost";
-            case NetworkAddressModi.server:
-                return ServerManager.domainSecure;
-            default:
-                return plattformDependent;
-        }
-    }
 }
-
-public enum NetworkAddressModi { auto, local, server }
