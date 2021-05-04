@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour {
         if (movementStatus == PlayerMovementStatus.idle)
             return;
 
-        Debug.Log ("[PlayerMovement SetModeIdle] Player in Idle-Mode.");
+        // Debug.Log ("[PlayerMovement SetModeIdle] Player in Idle-Mode.");
         movementStatus = PlayerMovementStatus.idle;
         walkCircle.SetActive (true);
         player.playerVisuals.Stand ();
@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour {
         if (movementStatus == PlayerMovementStatus.walk)
             return;
 
-        Debug.Log ("[PlayerMovement SetModeWalk] Player in Walk-Mode.");
+        // Debug.Log ("[PlayerMovement SetModeWalk] Player in Walk-Mode.");
         movementStatus = PlayerMovementStatus.walk;
         walkCircle.SetActive (true);
         player.playerVisuals.Stand ();
@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour {
         if (movementStatus == PlayerMovementStatus.crawl)
             return;
 
-        Debug.Log ("[PlayerMovement SetModeCrawl] Player in Crawl-Mode.");
+        // Debug.Log ("[PlayerMovement SetModeCrawl] Player in Crawl-Mode.");
         movementStatus = PlayerMovementStatus.crawl;
         walkCircle.SetActive (false);
         player.playerVisuals.Crawl ();
