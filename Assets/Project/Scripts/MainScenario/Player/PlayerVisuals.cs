@@ -6,16 +6,16 @@ public class PlayerVisuals : MonoBehaviour {
     public Player player;
     public float headNormalHeight;
     public float headCrawlHeight;
-    public MeshRenderer[] visualObjects;
+    public MeshRenderer[] objectToHide;
 
     public void Hide () {
-        foreach (MeshRenderer obj in visualObjects) {
+        foreach (MeshRenderer obj in objectToHide) {
             obj.enabled = false;
         }
     }
 
     public void Show () {
-        foreach (MeshRenderer obj in visualObjects) {
+        foreach (MeshRenderer obj in objectToHide) {
             obj.enabled = true;
         }
     }

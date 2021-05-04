@@ -18,6 +18,9 @@ public class PlayerMovement : MonoBehaviour {
         movementStatus = PlayerMovementStatus.idle;
         walkCircle.SetActive (true);
         player.playerVisuals.Stand ();
+
+        if (keyboardWalkDirections == null)
+            keyboardWalkDirections = new KeyboardWalkDirections ();
         keyboardWalkDirections.Reset ();
     }
 
@@ -39,6 +42,9 @@ public class PlayerMovement : MonoBehaviour {
         movementStatus = PlayerMovementStatus.crawl;
         walkCircle.SetActive (false);
         player.playerVisuals.Crawl ();
+
+        if (keyboardWalkDirections == null)
+            keyboardWalkDirections = new KeyboardWalkDirections ();
         keyboardWalkDirections.Reset ();
     }
 
@@ -90,7 +96,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 }
 
-public enum PlayerMovementStatus { idle, walk, crawl }
+public enum PlayerMovementStatus { load, idle, walk, crawl }
 public class KeyboardWalkDirections {
     public bool keyboardActive = false;
     public bool forward = false;

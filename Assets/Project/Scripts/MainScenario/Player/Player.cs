@@ -8,28 +8,32 @@ public class Player : NetworkBehaviour {
     public GameObject cameraPrefabForLocalPlayer;
     public GameObject cameraHolderIfLocalPlayer;
 
+    public PlayerNetworking playerNetworking;
+    public PlayerVisuals playerVisuals;
     public PlayerMovement playerMovement;
     public PlayerRotation playerRotation;
-    public PlayerVisuals playerVisuals;
-    public PlayerNetworking playerNetworking;
+
+    private bool setupReady = false;
 
     void Start () {
-        playerMovement.SetModeIdle ();
         if (isLocalPlayer) {
             Debug.Log ("[Player Start] New Player Instance (LOCALE PLAYER) spawned!");
-            playerNetworking.RegisterLocalPlayer ();
-            playerVisuals.Hide ();
-            AddCamera ();
+            PrepareLocalePlayer ();
         } else {
             Debug.Log ("[Player Start] New Player Instance spawned.");
-            // No Network-Registration needed.
-            // No hiding of own Visuals needed.
-            // No Camera needed.
         }
+        setupReady = true;
+    }
+
+    void PrepareLocalePlayer () {
+        playerNetworking.RegisterLocalPlayer ();
+        playerMovement.SetModeIdle ();
+        playerVisuals.Hide ();
+        AddCamera ();
     }
 
     void Update () {
-        if (isLocalPlayer) {
+        if (isLocalPlayer && setupReady) {
             playerRotation.ApplyMouseRotation ();
             playerMovement.CheckKeyboardInput ();
             playerMovement.UpdateMovement ();
