@@ -5,82 +5,59 @@ using UnityEngine;
 using UnityEngine.SpatialTracking;
 
 public class Player : NetworkBehaviour {
-    public GameObject cameraHolder;
-    public MeshRenderer[] objectToHide;
+    public GameObject cameraPrefabForLocalPlayer;
+    public GameObject cameraHolderIfLocalPlayer;
 
-    [SyncVar (hook = nameof (HookScenario))]
-    public int belongsToScenario;
-
-    [SyncVar (hook = nameof (HookPlayer))]
-    public bool isOwner;
+    public PlayerMovement playerMovement;
+    public PlayerRotation playerRotation;
+    public PlayerVisuals playerVisuals;
+    public PlayerNetworking playerNetworking;
 
     void Start () {
+        playerMovement.SetModeIdle ();
         if (isLocalPlayer) {
-            Debug.Log ("Is Local Player, going to send command to Server to change info");
-            CmdChangeInfo (SessionManager.scenario.id, SessionManager.IsOwner ());
-            Camera.main.transform.SetParent (cameraHolder.transform);
-            Camera.main.transform.localPosition = new Vector3 (0, 0, 0);
-            // Hide own Body
-            HidePlayer ();
+            Debug.Log ("[Player Start] New Player Instance (LOCALE PLAYER) spawned!");
+            playerNetworking.RegisterLocalPlayer ();
+            playerVisuals.Hide ();
+            AddCamera ();
+        } else {
+            Debug.Log ("[Player Start] New Player Instance spawned.");
+            // No Network-Registration needed.
+            // No hiding of own Visuals needed.
+            // No Camera needed.
         }
     }
 
-    [Command]
-    private void CmdChangeInfo (int _scenarioId, bool _isOwner) {
-        // only runs on server, even if called from client
-        Debug.Log ("Changed infos in server side. Values: " + _scenarioId + "; " + _isOwner);
-        belongsToScenario = _scenarioId;
-        isOwner = _isOwner;
+    void Update () {
+        if (isLocalPlayer) {
+            playerRotation.ApplyMouseRotation ();
+            playerMovement.CheckKeyboardInput ();
+            playerMovement.UpdateMovement ();
+        }
     }
 
     public void HideUnrelatedPlayers () {
-        // runs on client
         if (isLocalPlayer) {
-
-            Debug.Log ("GOING TO HIDE ALL PLAYERS THAT DO NOT BELONG TO " + belongsToScenario + "; IS_OWNER: " + isOwner);
-
+            Debug.Log ("[Player HideUnrelatedPlayers] Going to hide all unrelated Players. (Local Player Data: " + playerNetworking.belongsToScenario + "; " + playerNetworking.isOwner + ")");
             var players = GameObject.FindGameObjectsWithTag ("Player");
             foreach (GameObject p in players) {
-                var playerComp = p.GetComponent<Player> ();
-                if (playerComp.belongsToScenario == belongsToScenario && !playerComp.isOwner && isOwner) {
-                    // show other players if theyy belong to scenario and player is owner
-                    playerComp.ShowPlayer ();
+                var otherPlayer = p.GetComponent<Player> ();
+                var otherPlayerNet = otherPlayer.playerNetworking;
+                if (otherPlayerNet.belongsToScenario == playerNetworking.belongsToScenario && !otherPlayerNet.isOwner && playerNetworking.isOwner) {
+                    // show other players if they belong to scenario and player is owner
+                    otherPlayer.playerVisuals.Show ();
                 } else {
                     // hide other players that do not belong to this scenario
-                    playerComp.HidePlayer ();
+                    otherPlayer.playerVisuals.Hide ();
                 }
             }
         }
     }
 
-    void HookScenario (int oldValue, int newValue) {
-        // Update all Client-Side Playerprefabs
-        var players = GameObject.FindGameObjectsWithTag ("Player");
-        foreach (GameObject p in players) {
-            var playerComp = p.GetComponent<Player> ();
-            playerComp.HideUnrelatedPlayers ();
-        }
-    }
-    void HookPlayer (bool oldValue, bool newValue) {
-        // Update all Client-Side Playerprefabs
-        var players = GameObject.FindGameObjectsWithTag ("Player");
-        foreach (GameObject p in players) {
-            var playerComp = p.GetComponent<Player> ();
-            playerComp.HideUnrelatedPlayers ();
-        }
-    }
-
-    public void HidePlayer () {
-        foreach (MeshRenderer obj in objectToHide) {
-            obj.enabled = false;
-        }
-    }
-
-    public void ShowPlayer () {
-        if (!isLocalPlayer) {
-            foreach (MeshRenderer obj in objectToHide) {
-                obj.enabled = true;
-            }
+    public void AddCamera () {
+        if (isLocalPlayer) {
+            Instantiate (cameraPrefabForLocalPlayer, cameraHolderIfLocalPlayer.transform, false);
+            Camera.main.transform.localPosition = new Vector3 (0, 0, 0);
         }
     }
 }
