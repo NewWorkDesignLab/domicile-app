@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class CameraRaycaster : MonoBehaviour {
     private const float maxDistance = 10;
-    private GameObject gazedAtObject = null;
+    private GameObject gazedAtAnyObject = null;
+    private GameObject gazedAtRaycastReceiver = null;
 
     public float gazeTimerDuration = 2f;
     private float elapsedTime;
@@ -27,31 +28,51 @@ public class CameraRaycaster : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast (transform.position, transform.forward, out hit, maxDistance)) {
             // GameObject detected in front of the camera.
-            raycastActiveImage.gameObject.SetActive (true);
-            raycastIdleImage.gameObject.SetActive (false);
-
-            if (gazedAtObject != hit.transform.gameObject) {
+            if (gazedAtAnyObject != hit.transform.gameObject) {
                 // New GameObject.
-                gazedAtObject?.SendMessage ("RaycastExit");
-                gazedAtObject = hit.transform.gameObject;
-                gazedAtObject.SendMessage ("RaycastEnter");
+                gazedAtAnyObject = hit.transform.gameObject;
 
-                if (gazedAtObject.GetComponent<CameraRaycastReceiver> ().GazeEventPresent ())
-                    StartGazeTimer ();
+                CameraRaycastReceiver receiver = gazedAtAnyObject.GetComponent<CameraRaycastReceiver> ();
+                if (receiver != null) {
+                    // Is RaycastReceiver
+                    raycastActiveImage.gameObject.SetActive (true);
+                    raycastIdleImage.gameObject.SetActive (false);
+
+                    if (gazedAtRaycastReceiver != gazedAtAnyObject) {
+                        // New RaycastReceiver GameObject.
+                        gazedAtRaycastReceiver?.SendMessage ("RaycastExit", null, SendMessageOptions.DontRequireReceiver);
+                        gazedAtRaycastReceiver = gazedAtAnyObject;
+                        gazedAtRaycastReceiver.SendMessage ("RaycastEnter", null, SendMessageOptions.DontRequireReceiver);
+
+                        if (receiver.GazeEventPresent ())
+                            StartGazeTimer ();
+                    }
+                } else {
+                    // New GameObject but not a RaycastReceiver
+                    raycastActiveImage.gameObject.SetActive (false);
+                    raycastIdleImage.gameObject.SetActive (true);
+
+                    gazedAtRaycastReceiver?.SendMessage ("RaycastExit", null, SendMessageOptions.DontRequireReceiver);
+                    gazedAtRaycastReceiver = null;
+                    StopGazeTimer ();
+                }
+            } else {
+                // No New GameObject.
             }
         } else {
             // No GameObject detected in front of the camera.
             raycastActiveImage.gameObject.SetActive (false);
             raycastIdleImage.gameObject.SetActive (true);
 
-            gazedAtObject?.SendMessage ("RaycastExit");
-            gazedAtObject = null;
+            gazedAtRaycastReceiver?.SendMessage ("RaycastExit", null, SendMessageOptions.DontRequireReceiver);
+            gazedAtRaycastReceiver = null;
+            gazedAtAnyObject = null;
             StopGazeTimer ();
         }
 
         // Checks for screen touches.
         if (Google.XR.Cardboard.Api.IsTriggerPressed) {
-            gazedAtObject?.SendMessage ("RaycastClick");
+            gazedAtAnyObject?.SendMessage ("RaycastClick", null, SendMessageOptions.DontRequireReceiver);
         }
     }
 
@@ -63,7 +84,7 @@ public class CameraRaycaster : MonoBehaviour {
 
     IEnumerator WaitForActivation () {
         yield return new WaitForSeconds (gazeTimerDuration);
-        gazedAtObject?.SendMessage ("RaycastGazedEnter");
+        gazedAtAnyObject?.SendMessage ("RaycastGazedEnter", null, SendMessageOptions.DontRequireReceiver);
         StopGazeTimer ();
     }
 

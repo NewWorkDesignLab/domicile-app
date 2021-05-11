@@ -16,6 +16,7 @@ public class ApplicationEntranceScript : MonoBehaviour {
 #endif
 
     void Start () {
+        Debug.Log ("[ApplicationEntranceScript Start] Switched to ApplicationEntrance Scene.");
 #if UNITY_ANDROID
         Debug.Log ("[ApplicationEntranceScript Start] Plattform: Android");
         DataManager.Load ();

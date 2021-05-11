@@ -26,6 +26,7 @@ public class Player : NetworkBehaviour {
     }
 
     void PrepareLocalePlayer () {
+        transform.gameObject.tag = "LocalPlayer";
         playerNetworking.RegisterLocalPlayer ();
         playerMovement.SetModeIdle ();
         playerVisuals.Hide ();
@@ -47,11 +48,16 @@ public class Player : NetworkBehaviour {
             foreach (GameObject p in players) {
                 var otherPlayer = p.GetComponent<Player> ();
                 var otherPlayerNet = otherPlayer.playerNetworking;
-                if (otherPlayerNet.belongsToScenario == playerNetworking.belongsToScenario && !otherPlayerNet.isOwner && playerNetworking.isOwner) {
-                    // show other players if they belong to scenario and player is owner
+
+                if (!playerNetworking.isOwner || otherPlayerNet.isOwner) {
+                    // This (Local)Player is Guest OR the iterated Player is Owner
+                    otherPlayer.playerVisuals.Hide ();
+                } else if (otherPlayerNet.belongsToScenario == playerNetworking.belongsToScenario) {
+                    // This (Local)Player is Owner AND the iterated Player is Guest
+                    // AND This (Local)Player and Iterated Player are in same Scenario
                     otherPlayer.playerVisuals.Show ();
                 } else {
-                    // hide other players that do not belong to this scenario
+                    // Else Hide
                     otherPlayer.playerVisuals.Hide ();
                 }
             }

@@ -10,6 +10,7 @@ public class MainScenarioScript : Singleton<MainScenarioScript> {
     public SimpleWebTransport webTransport;
 
     void Start () {
+        Debug.Log ("[MainScenarioScript Start] Switched to MainScenario Scene.");
         SetupNetworkingInformations ();
 #if UNITY_ANDROID
         Debug.Log ("[MainScenarioScript Start] Plattform: Android");

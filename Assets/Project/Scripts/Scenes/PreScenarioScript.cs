@@ -17,6 +17,7 @@ public class PreScenarioScript : MonoBehaviour {
     private bool continueSessionDataCheck = false;
 
     void Start () {
+        Debug.Log ("[PreScenarioScript Start] Switched to PreScenario Scene.");
         loadingIndicator.SetActive (true);
         overviewContent.SetActive (false);
         scenarioExecutionError.SetActive (false);

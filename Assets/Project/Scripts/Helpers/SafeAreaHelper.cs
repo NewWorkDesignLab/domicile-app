@@ -3,42 +3,66 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SafeAreaHelper : MonoBehaviour {
-    // Source:
-    // https://connect.unity.com/p/updating-your-gui-for-the-iphone-x-and-other-notched-devices
-
-    RectTransform Panel;
-    Rect LastSafeArea = new Rect (0, 0, 0, 0);
+    // Source (Edited):
+    // https://forum.unity.com/threads/canvashelper-resizes-a-recttransform-to-iphone-xs-safe-area.521107/
+    private RectTransform targetRectTransform;
+    private ScreenOrientation lastOrientation = ScreenOrientation.Landscape;
+    private Vector2 lastResolution = Vector2.zero;
+    private Rect lastSafeArea = Rect.zero;
 
     void Awake () {
-        Panel = GetComponent<RectTransform> ();
-        Refresh ();
+        targetRectTransform = GetComponent<RectTransform> ();
+        lastOrientation = Screen.orientation;
+        lastResolution.x = Screen.width;
+        lastResolution.y = Screen.height;
+        lastSafeArea = Screen.safeArea;
+        ApplySafeArea ();
     }
 
     void Update () {
-        Refresh ();
+        if (Application.isMobilePlatform && Screen.orientation != lastOrientation)
+            OrientationChanged ();
+
+        if (Screen.safeArea != lastSafeArea)
+            SafeAreaChanged ();
+
+        if (Screen.width != lastResolution.x || Screen.height != lastResolution.y)
+            ResolutionChanged ();
     }
 
-    void Refresh () {
-        Rect safeArea = Screen.safeArea;
+    void ApplySafeArea () {
+        if (targetRectTransform == null)
+            return;
 
-        if (safeArea != LastSafeArea)
-            ApplySafeArea (safeArea);
-    }
+        var safeArea = Screen.safeArea;
 
-    void ApplySafeArea (Rect r) {
-        LastSafeArea = r;
-
-        // Convert safe area rectangle from absolute pixels to normalised anchor coordinates
-        Vector2 anchorMin = r.position;
-        Vector2 anchorMax = r.position + r.size;
+        var anchorMin = safeArea.position;
+        var anchorMax = safeArea.position + safeArea.size;
         anchorMin.x /= Screen.width;
         anchorMin.y /= Screen.height;
         anchorMax.x /= Screen.width;
         anchorMax.y /= Screen.height;
-        Panel.anchorMin = anchorMin;
-        Panel.anchorMax = anchorMax;
 
-        Debug.LogFormat ("[SafeAreaHelper ApplySafeArea] New safe area applied to {0}: x={1}, y={2}, w={3}, h={4} on full extents w={5}, h={6}",
-            name, r.x, r.y, r.width, r.height, Screen.width, Screen.height);
+        targetRectTransform.anchorMin = anchorMin;
+        targetRectTransform.anchorMax = anchorMax;
+    }
+
+    private void OrientationChanged () {
+        Debug.Log ("[SafeAreaHelper OrientationChanged] Orientation changed from " + lastOrientation + " to " + Screen.orientation + " at " + Time.time);
+        lastOrientation = Screen.orientation;
+        lastResolution.x = Screen.width;
+        lastResolution.y = Screen.height;
+    }
+
+    private void ResolutionChanged () {
+        Debug.Log ("[SafeAreaHelper ResolutionChanged] Resolution changed from " + lastResolution + " to (" + Screen.width + ", " + Screen.height + ") at " + Time.time);
+        lastResolution.x = Screen.width;
+        lastResolution.y = Screen.height;
+    }
+
+    private void SafeAreaChanged () {
+        Debug.Log ("[SafeAreaHelper SafeAreaChanged] Safe Area changed from " + lastSafeArea + " to " + Screen.safeArea.size + " at " + Time.time);
+        lastSafeArea = Screen.safeArea;
+        ApplySafeArea ();
     }
 }

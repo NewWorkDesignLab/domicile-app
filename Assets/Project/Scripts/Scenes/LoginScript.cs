@@ -9,6 +9,10 @@ public class LoginScript : MonoBehaviour {
     public InputGroupComponent passwordInput;
     public GameObject loadingIndicator;
 
+    void Start() {
+        Debug.Log ("[LoginScript Start] Switched to Login Scene.");
+    }
+
     public void LoginUser () {
         loadingIndicator.SetActive (true);
         string email = emailInput.inputFieldReference.text;
