@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CameraRaycaster : MonoBehaviour {
-    private const float maxDistance = 10;
+    private const float maxDistance = 4;
     private GameObject gazedAtAnyObject = null;
     private GameObject gazedAtRaycastReceiver = null;
 
-    public float gazeTimerDuration = 2f;
+    public float gazeTimerDuration = 1f;
     private float elapsedTime;
     private bool gazeTimerActive = false;
     private Coroutine gazeTimerCoroutine;
