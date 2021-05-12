@@ -16,7 +16,9 @@ public static class ScreenshotManager {
             notification.Add ("Screenshot in 1");
             notification.Add ("");
             HUD.instance.ShowNotification (notification, 1f, () => {
+                HUD.instance.HideHUD ();
                 CoroutineHelper.instance.StartCoroutine (ScreenshotManager.SavePhoto ((success) => {
+                    HUD.instance.ShowHUD ();
                     if (success)
                         HUD.instance.ShowNotification ("Screenshot gespeichert", .6f);
                     else
@@ -26,6 +28,7 @@ public static class ScreenshotManager {
                 }));
             });
         } else {
+            HUD.instance.ShowNotification ("Screenshot zur Zeit nicht möglich", 1f);
             Debug.LogWarning ("[ScreenshotScript TakeScreenshot] Cannot take Screenshot. Is Busy.");
         }
     }
@@ -35,6 +38,7 @@ public static class ScreenshotManager {
 
 #if UNITY_EDITOR
         Debug.Log ("[ScreenshotScript SavePhoto] Would only save Screenshot on Android.");
+        yield return new WaitForSecondsRealtime (.5f);
         callback (true);
 #else
         Texture2D image = new Texture2D (Screen.width, Screen.height, TextureFormat.RGB24, false);

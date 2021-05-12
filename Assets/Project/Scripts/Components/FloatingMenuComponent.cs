@@ -9,6 +9,7 @@ public class FloatingMenuComponent : MonoBehaviour {
     private float buttonDistancePlayer = 1.5f;
     private bool endConfirmation = false;
     private bool menuIsOpen = false;
+    private bool menuIsHidden = false;
 
     void Start () {
         CloseMenu ();
@@ -16,10 +17,7 @@ public class FloatingMenuComponent : MonoBehaviour {
 
     void Update () {
         if (Camera.main != null) {
-            Show ();
             UpdatePosition ();
-        } else {
-            Hide ();
         }
     }
 
@@ -47,26 +45,29 @@ public class FloatingMenuComponent : MonoBehaviour {
     }
 
     void Hide () {
+        menuIsHidden = true;
         menuIsOpen = false;
         menuItems.SetActive (false);
         menuButton.SetActive (false);
     }
     void Show () {
-        if (menuIsOpen)
-            OpenMenu ();
-        else
-            CloseMenu ();
+        menuIsHidden = false;
+        CloseMenu ();
     }
 
     public void CloseMenu () {
-        menuIsOpen = false;
-        menuItems.SetActive (false);
-        menuButton.SetActive (true);
+        if (!menuIsHidden) {
+            menuIsOpen = false;
+            menuItems.SetActive (false);
+            menuButton.SetActive (true);
+        }
     }
     public void OpenMenu () {
-        menuIsOpen = true;
-        menuItems.SetActive (true);
-        menuButton.SetActive (false);
+        if (!menuIsHidden) {
+            menuIsOpen = true;
+            menuItems.SetActive (true);
+            menuButton.SetActive (false);
+        }
     }
 
     public void ToggleMenu () {
@@ -81,12 +82,9 @@ public class FloatingMenuComponent : MonoBehaviour {
         CloseMenu ();
     }
     public void ScreenshotButton () {
-        CloseMenu ();
-        menuButton.SetActive (false);
-        HUD.instance.HideHUD ();
+        Hide ();
         ScreenshotManager.TakeScreenshot ((success) => {
-            menuButton.SetActive (true);
-            HUD.instance.ShowHUD ();
+            Show ();
         });
     }
     public void ExitScenarioButton () {

@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour {
         movementStatus = PlayerMovementStatus.idle;
         walkCircle.SetActive (true);
         player.playerVisuals.Stand ();
+        HUD.instance.positionText.text = "Stehen";
 
         if (keyboardWalkDirections == null)
             keyboardWalkDirections = new KeyboardWalkDirections ();
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour {
         movementStatus = PlayerMovementStatus.walk;
         walkCircle.SetActive (true);
         player.playerVisuals.Stand ();
+        HUD.instance.positionText.text = "Laufen";
     }
 
     public void SetModeCrawl () {
@@ -42,6 +44,7 @@ public class PlayerMovement : MonoBehaviour {
         movementStatus = PlayerMovementStatus.crawl;
         walkCircle.SetActive (false);
         player.playerVisuals.Crawl ();
+        HUD.instance.positionText.text = "Hocken";
 
         if (keyboardWalkDirections == null)
             keyboardWalkDirections = new KeyboardWalkDirections ();

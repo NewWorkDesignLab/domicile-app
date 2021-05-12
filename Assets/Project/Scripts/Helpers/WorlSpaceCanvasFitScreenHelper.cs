@@ -26,14 +26,16 @@ public class WorlSpaceCanvasFitScreenHelper : MonoBehaviour {
 
     void ApplySafeArea () {
         // New Width / Hights according to Screen Resolution
-        targetRectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, Screen.width);
-        targetRectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, Screen.height);
+        float targetHeight = Screen.height;
+        float targetWidth = targetHeight * Camera.main.aspect;
+        targetRectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, targetWidth);
+        targetRectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, targetHeight);
 
         // New Scale to fit Camera
         float distanceCameraHud = transform.localPosition.z;
         var frustumHeight = 2.0f * distanceCameraHud * Mathf.Tan (Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
         var frustumWidth = frustumHeight * Camera.main.aspect;
-        Vector3 newScale = new Vector3 (frustumWidth / Screen.width, frustumHeight / Screen.height, 0);
+        Vector3 newScale = new Vector3 (frustumWidth / targetWidth, frustumHeight / targetHeight, 0);
         targetRectTransform.localScale = newScale;
     }
 
