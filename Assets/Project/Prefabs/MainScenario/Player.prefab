@@ -580,7 +580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 340734184583882803}
   headNormalHeight: 2
-  headCrawlHeight: 0.5
+  headCrawlHeight: 0.3
   objectToHide:
   - {fileID: 3535738280719002769}
   - {fileID: 3073997080848176563}
@@ -600,7 +600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 340734184583882803}
   walkCircle: {fileID: 45635456}
-  movementFactor: 1
+  movementFactor: 1.3
 --- !u!114 &8742672720032411763
 MonoBehaviour:
   m_ObjectHideFlags: 0

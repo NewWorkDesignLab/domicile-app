@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Android;
 
-public class ScreenshotManager {
+public static class ScreenshotManager {
 #if UNITY_ANDROID
-    bool isBusy = false;
+    private static bool isBusy = false;
 
-    public void TakeScreenshot (Action<bool> callback) {
+    public static void TakeScreenshot (Action<bool> callback) {
         if (!isBusy) {
             isBusy = true;
             var notification = new List<string> ();
@@ -16,7 +16,7 @@ public class ScreenshotManager {
             notification.Add ("Screenshot in 1");
             notification.Add ("");
             HUD.instance.ShowNotification (notification, 1f, () => {
-                CoroutineHelper.instance.StartCoroutine (SavePhoto ((success) => {
+                CoroutineHelper.instance.StartCoroutine (ScreenshotManager.SavePhoto ((success) => {
                     if (success)
                         HUD.instance.ShowNotification ("Screenshot gespeichert", .6f);
                     else
@@ -30,7 +30,7 @@ public class ScreenshotManager {
         }
     }
 
-    public IEnumerator SavePhoto (Action<bool> callback) {
+    public static IEnumerator SavePhoto (Action<bool> callback) {
         yield return new WaitForEndOfFrame ();
 
 #if UNITY_EDITOR
@@ -55,7 +55,7 @@ public class ScreenshotManager {
 #endif
     }
 #else
-    public void TakeScreenshot (Action<bool> callback) {
+    public static void TakeScreenshot (Action<bool> callback) {
         Debug.LogWarning ("[ScreenshotManager TakeScreenshot] Will only took Screenshot on Android.");
         callback (false);
     }

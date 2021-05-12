@@ -94,6 +94,14 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
     }
+
+    public void ToggleModeCrawl () {
+        if (movementStatus != PlayerMovementStatus.crawl) {
+            SetModeCrawl ();
+        } else {
+            SetModeIdle ();
+        }
+    }
 }
 
 public enum PlayerMovementStatus { load, idle, walk, crawl }

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SpatialTracking;
 
 public class Player : NetworkBehaviour {
+    public static Player localPlayer;
     public GameObject cameraPrefabForLocalPlayer;
     public GameObject cameraHolderIfLocalPlayer;
 
@@ -26,6 +27,7 @@ public class Player : NetworkBehaviour {
     }
 
     void PrepareLocalePlayer () {
+        localPlayer = this;
         transform.gameObject.tag = "LocalPlayer";
         playerNetworking.RegisterLocalPlayer ();
         playerMovement.SetModeIdle ();
