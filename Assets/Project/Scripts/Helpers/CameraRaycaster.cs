@@ -13,9 +13,10 @@ public class CameraRaycaster : MonoBehaviour {
     private bool gazeTimerActive = false;
     private Coroutine gazeTimerCoroutine;
     public Image gazeTimerImage;
-
     public Image raycastActiveImage;
     public Image raycastIdleImage;
+
+    public LayerMask layersToRaycast;
 
     public void Update () {
         // Update Gaze Timer
@@ -26,7 +27,7 @@ public class CameraRaycaster : MonoBehaviour {
 
         // Check for new Raycast Hits
         RaycastHit hit;
-        if (Physics.Raycast (transform.position, transform.forward, out hit, maxDistance)) {
+        if (Physics.Raycast (transform.position, transform.forward, out hit, maxDistance, layersToRaycast)) {
             // GameObject detected in front of the camera.
             if (gazedAtAnyObject != hit.transform.gameObject) {
                 // New GameObject.

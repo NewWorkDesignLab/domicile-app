@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 225965230896744343}
   - component: {fileID: 9190155280329616849}
   - component: {fileID: 5099128983831664249}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Roomdisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4901442096285444328}
   - component: {fileID: 7393501453622664849}
   - component: {fileID: 4875931635857768586}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Notification
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 383620008351595448}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: ReticlePointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 8649431303736712974}
   - component: {fileID: 5009014021911568120}
   - component: {fileID: 1498282456995409678}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: RaycastIdle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 7195391958343943867}
   - component: {fileID: 334983452577143567}
   - component: {fileID: 8053666680584076514}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 1334684221240779213}
   - component: {fileID: 1843445546913239646}
   - component: {fileID: 7470871432030795087}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: RaycastActive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -487,7 +487,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5948800604211438372}
   - component: {fileID: 6886306720979120733}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: HUD Group
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +542,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3983690347875079972}
   - component: {fileID: 3983690347875079975}
-  - component: {fileID: 3983690347875079974}
   - component: {fileID: 6285297598433696946}
   m_Layer: 0
   m_Name: Camera
@@ -563,6 +562,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1281296604858461058}
+  - {fileID: 2895370026621668899}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -597,7 +597,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 183
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -609,14 +609,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3983690347875079974
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3983690347875079969}
-  m_Enabled: 1
 --- !u!114 &6285297598433696946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -633,6 +625,9 @@ MonoBehaviour:
   gazeTimerImage: {fileID: 2408708731213386640}
   raycastActiveImage: {fileID: 7470871432030795087}
   raycastIdleImage: {fileID: 1498282456995409678}
+  layersToRaycast:
+    serializedVersion: 2
+    m_Bits: 192
 --- !u!1 &7261538637400714398
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,7 +639,7 @@ GameObject:
   - component: {fileID: 295735633860862958}
   - component: {fileID: 5721836322335781564}
   - component: {fileID: 9176967292986228789}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Posedisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -723,7 +718,7 @@ GameObject:
   - component: {fileID: 7632715837882195087}
   - component: {fileID: 2636099169240296522}
   - component: {fileID: 2408708731213386640}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: GazeTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -787,3 +782,77 @@ MonoBehaviour:
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &9052163780575803800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2895370026621668899}
+  - component: {fileID: 7706008439937656166}
+  m_Layer: 0
+  m_Name: OverlayCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2895370026621668899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9052163780575803800}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3983690347875079972}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &7706008439937656166
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9052163780575803800}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 3
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.01
+  far clip plane: 200
+  field of view: 95
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 64
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
