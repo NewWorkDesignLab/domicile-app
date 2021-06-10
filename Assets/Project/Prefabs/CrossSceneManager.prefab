@@ -59,6 +59,6 @@ MonoBehaviour:
   URLParameter: In WebGL Export, the User Authentication and Scenario Selection will
     be passed via URL Parameters. In Editor, the Parameters cant be fetched, so User
     Cretentials and ScenarioID defined below are used.
-  debugWebglUrlParameterEmail: info@tobiasbohn.com
+  debugWebglUrlParameterEmail: info1@tobiasbohn.com
   debugWebglUrlParameterPassword: 12345678
   debugWebglUrlParameterScenario: 50151

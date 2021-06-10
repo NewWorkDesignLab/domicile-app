@@ -17,17 +17,6 @@
       },
       "hash": "38cb0047bbc1b5a56c113164c9915fe2d22bc664"
     },
-    "com.nwdl.muvr": {
-      "version": "git@github.com:NewWorkDesignLab/muvr-test.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.unity.xr.management": "3.2.16",
-        "com.unity.inputsystem": "1.0.1",
-        "com.unity.textmeshpro": "3.0.3"
-      },
-      "hash": "9203a1f75a78f22f79e57cf6811873cadc25da28"
-    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,

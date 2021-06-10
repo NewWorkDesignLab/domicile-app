@@ -4,26 +4,16 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour {
-    public Player player;
-    public GameObject walkCircle;
     public float movementFactor = 1f;
-    PlayerMovementStatus movementStatus;
-    KeyboardWalkDirections keyboardWalkDirections;
+    private PlayerMovementStatus movementStatus;
+    private KeyboardWalkDirections keyboardWalkDirections;
 
     public void SetModeIdle () {
         if (movementStatus == PlayerMovementStatus.idle)
             return;
 
-        // Debug.Log ("[PlayerMovement SetModeIdle] Player in Idle-Mode.");
         movementStatus = PlayerMovementStatus.idle;
-        player.playerVisuals.Stand ();
-
-#if UNITY_ANDROID
-        walkCircle.SetActive (true);
-#else
-        walkCircle.SetActive (false);
-#endif
-
+        Player.localPlayer.Stand ();
         if (HUD.instance != null)
             HUD.instance.positionText.text = "Stehen";
 
@@ -36,16 +26,8 @@ public class PlayerMovement : MonoBehaviour {
         if (movementStatus == PlayerMovementStatus.walk)
             return;
 
-        // Debug.Log ("[PlayerMovement SetModeWalk] Player in Walk-Mode.");
         movementStatus = PlayerMovementStatus.walk;
-        player.playerVisuals.Stand ();
-
-#if UNITY_ANDROID
-        walkCircle.SetActive (true);
-#else
-        walkCircle.SetActive (false);
-#endif
-
+        Player.localPlayer.Stand ();
         if (HUD.instance != null)
             HUD.instance.positionText.text = "Laufen";
     }
@@ -54,11 +36,8 @@ public class PlayerMovement : MonoBehaviour {
         if (movementStatus == PlayerMovementStatus.crawl)
             return;
 
-        // Debug.Log ("[PlayerMovement SetModeCrawl] Player in Crawl-Mode.");
         movementStatus = PlayerMovementStatus.crawl;
-        walkCircle.SetActive (false);
-        player.playerVisuals.Crawl ();
-
+        Player.localPlayer.Crawl ();
         if (HUD.instance != null)
             HUD.instance.positionText.text = "Hocken";
 
@@ -67,7 +46,12 @@ public class PlayerMovement : MonoBehaviour {
         keyboardWalkDirections.Reset ();
     }
 
-    public void CheckKeyboardInput () {
+    void Update () {
+        CheckKeyboardInput ();
+        UpdateMovement ();
+    }
+
+    void CheckKeyboardInput () {
         if (keyboardWalkDirections == null)
             keyboardWalkDirections = new KeyboardWalkDirections ();
 
@@ -92,7 +76,7 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-    public void UpdateMovement () {
+    void UpdateMovement () {
         if (movementStatus == PlayerMovementStatus.walk) {
             Vector3 forwardMovement = Camera.main.transform.forward;
             forwardMovement.y = 0;
@@ -100,16 +84,16 @@ public class PlayerMovement : MonoBehaviour {
             sidewayMovement.y = 0;
 
             if (keyboardWalkDirections.forward || !keyboardWalkDirections.AnyDirectionActive ()) {
-                player.gameObject.transform.position += forwardMovement * movementFactor * Time.deltaTime;
+                transform.position += forwardMovement * movementFactor * Time.deltaTime;
             }
             if (keyboardWalkDirections.backward) {
-                player.gameObject.transform.position -= forwardMovement * movementFactor * Time.deltaTime;
+                transform.position -= forwardMovement * movementFactor * Time.deltaTime;
             }
             if (keyboardWalkDirections.right) {
-                player.gameObject.transform.position += sidewayMovement * movementFactor * Time.deltaTime;
+                transform.position += sidewayMovement * movementFactor * Time.deltaTime;
             }
             if (keyboardWalkDirections.left) {
-                player.gameObject.transform.position -= sidewayMovement * movementFactor * Time.deltaTime;
+                transform.position -= sidewayMovement * movementFactor * Time.deltaTime;
             }
         }
     }

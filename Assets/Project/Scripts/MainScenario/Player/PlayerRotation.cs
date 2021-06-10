@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerRotation : MonoBehaviour {
-    public Player player;
-
     public float sensitivityX = 10F;
     public float sensitivityY = 10F;
 
@@ -17,9 +15,13 @@ public class PlayerRotation : MonoBehaviour {
     float rotationY = 0F;
     Quaternion originalRotation;
 
-    public void ApplyMouseRotation () {
+    void Update () {
+        ApplyMouseRotation ();
+    }
+
+    void ApplyMouseRotation () {
         if (originalRotation == null) {
-            originalRotation = player.cameraHolderIfLocalPlayer.transform.localRotation;
+            originalRotation = transform.localRotation;
         }
 
         var mouse = Mouse.current;
@@ -30,11 +32,11 @@ public class PlayerRotation : MonoBehaviour {
             rotationY = ClampAngle (rotationY, minimumY, maximumY);
             Quaternion xQuaternion = Quaternion.AngleAxis (rotationX, Vector3.up);
             Quaternion yQuaternion = Quaternion.AngleAxis (rotationY, -Vector3.right);
-            player.cameraHolderIfLocalPlayer.transform.localRotation = xQuaternion * yQuaternion;
+            transform.localRotation = xQuaternion * yQuaternion;
         }
     }
 
-    public static float ClampAngle (float angle, float min, float max) {
+    static float ClampAngle (float angle, float min, float max) {
         if (angle < -360F) {
             angle += 360F;
         }
