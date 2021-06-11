@@ -11,6 +11,8 @@ public class Player : NetworkBehaviour {
     public MeshRenderer playerHead;
     public MeshRenderer playerBody;
     public MeshRenderer playerVector;
+    public Light viewportInner;
+    public Light viewportOuter;
 
     [Header ("Local Player")]
     public PlayerMovement playerMovement;
@@ -99,6 +101,10 @@ public class Player : NetworkBehaviour {
         playerBody.enabled = value;
         playerVector.enabled = value;
         playerVector.gameObject.SetActive (value);
+        viewportInner.enabled = value;
+        viewportInner.gameObject.SetActive (value);
+        viewportOuter.enabled = value;
+        viewportOuter.gameObject.SetActive (value);
     }
 
     private void SetInteractabillity (bool value) {
