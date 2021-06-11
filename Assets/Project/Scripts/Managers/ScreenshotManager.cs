@@ -16,9 +16,16 @@ public static class ScreenshotManager {
             notification.Add ("Screenshot in 1");
             notification.Add ("");
             HUD.instance.ShowNotification (notification, 1f, () => {
-                HUD.instance.HideHUD ();
+                // hide Hud
+                GameObject overlayCam = GameObject.FindGameObjectsWithTag ("OverlayCamera") [0];
+                if (overlayCam != null)
+                    overlayCam.GetComponent<Camera> ().enabled = false;
+
                 CoroutineHelper.instance.StartCoroutine (ScreenshotManager.SavePhoto ((success) => {
-                    HUD.instance.ShowHUD ();
+                    // Show Hud
+                    if (overlayCam != null)
+                        overlayCam.GetComponent<Camera> ().enabled = true;
+
                     if (success)
                         HUD.instance.ShowNotification ("Screenshot gespeichert", .6f);
                     else
@@ -49,10 +56,20 @@ public static class ScreenshotManager {
         NativeGallery.Permission permission = NativeGallery.SaveImageToGallery (image, "Domicile VR", myFileName, (success, path) => {
             if (success) {
                 Debug.Log ("[ScreenshotScript SavePhoto] Successfully saved Screenshot to: " + path);
+
+                // Upload image
+                string[] paths = { path };
+                Execution.UploadImages (SessionManager.execution.id, paths, (execution) => {
+                    Debug.Log ("[ScreenshotScript SavePhoto] Success in Image Upload. Execution: " + execution);
+                    callback (true);
+                }, () => {
+                    Debug.LogError ("[EndScenario Start] Error in Image Upload.");
+                    callback (false);
+                });
             } else {
                 Debug.LogError ("[ScreenshotScript SavePhoto] Error while creating Screenshot.");
+                callback (false);
             }
-            callback (success);
         });
         Debug.Log ("[ScreenshotScript SavePhoto] Image Permission: " + permission);
         // CoroutineHelper.instance.Destroy (image);
