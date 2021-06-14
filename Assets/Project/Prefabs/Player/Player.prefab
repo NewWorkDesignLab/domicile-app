@@ -408,7 +408,7 @@ MonoBehaviour:
   capsuleCollider: {fileID: 8388597768904451419}
   trackedPoseDriver: {fileID: 5089582054108079518}
   localPlayerExtensionHead: {fileID: 3983690347875079969, guid: e65ba3711cf5cd40c83204f39e60c624, type: 3}
-  headNormalHeight: 2.75
+  headNormalHeight: 3.2
   headCrawlHeight: 0.75
   email: 
   scenario: 0

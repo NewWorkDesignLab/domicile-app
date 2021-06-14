@@ -46,6 +46,10 @@ public class PlayerMovement : MonoBehaviour {
         keyboardWalkDirections.Reset ();
     }
 
+    void Start () {
+        SetModeIdle ();
+    }
+
     void Update () {
         CheckKeyboardInput ();
         UpdateMovement ();
