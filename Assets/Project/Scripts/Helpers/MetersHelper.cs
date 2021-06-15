@@ -1,24 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
-public class MetersHelper : MonoBehaviour {
+public class MetersHelper : NetworkBehaviour {
     public GameObject targetMeter;
     public GameObject openButton;
     public GameObject closeButton;
 
-    void Start () {
-        CloseMeter ();
+    [SyncVar (hook = nameof (SetCurrentState))]
+    public bool currentState;
+
+    public override void OnStartServer () {
+        base.OnStartServer ();
+        currentState = false;
     }
 
-    public void OpenMeter () {
-        targetMeter.SetActive (true);
-        openButton.SetActive (false);
-        closeButton.SetActive (true);
+    public override void OnStartClient () {
+        SetCurrentState (true, currentState);
     }
+
+    [Command (requiresAuthority = false)]
+    public void OpenMeter () {
+        currentState = true;
+    }
+
+    [Command (requiresAuthority = false)]
     public void CloseMeter () {
-        targetMeter.SetActive (false);
-        openButton.SetActive (true);
-        closeButton.SetActive (false);
+        currentState = false;
+    }
+
+    private void SetCurrentState (bool oldState, bool newState) {
+        targetMeter.SetActive (newState);
+        openButton.SetActive (!newState);
+        closeButton.SetActive (newState);
     }
 }

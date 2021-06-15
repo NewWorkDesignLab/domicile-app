@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4374901, g: 0.48531127, b: 0.56558615, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -348,6 +348,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 282847140}
     m_Modifications:
+    - target: {fileID: -2818332576721541834, guid: bad174d63897a349498c442206f7ffaf, type: 3}
+      propertyPath: sceneId
+      value: 505586599
+      objectReference: {fileID: 0}
+    - target: {fileID: 484932680183348956, guid: bad174d63897a349498c442206f7ffaf, type: 3}
+      propertyPath: sceneId
+      value: 2389178475
+      objectReference: {fileID: 0}
     - target: {fileID: 5413867671129795953, guid: bad174d63897a349498c442206f7ffaf, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.1
@@ -489,6 +497,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 282847140}
     m_Modifications:
+    - target: {fileID: -2818332576721541834, guid: bad174d63897a349498c442206f7ffaf, type: 3}
+      propertyPath: sceneId
+      value: 11494234
+      objectReference: {fileID: 0}
+    - target: {fileID: 484932680183348956, guid: bad174d63897a349498c442206f7ffaf, type: 3}
+      propertyPath: sceneId
+      value: 2630697328
+      objectReference: {fileID: 0}
     - target: {fileID: 5413867671129795953, guid: bad174d63897a349498c442206f7ffaf, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.1
@@ -1378,6 +1394,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 282847140}
     m_Modifications:
+    - target: {fileID: -2818332576721541834, guid: bad174d63897a349498c442206f7ffaf, type: 3}
+      propertyPath: sceneId
+      value: 97164851
+      objectReference: {fileID: 0}
+    - target: {fileID: 484932680183348956, guid: bad174d63897a349498c442206f7ffaf, type: 3}
+      propertyPath: sceneId
+      value: 1976096527
+      objectReference: {fileID: 0}
     - target: {fileID: 5413867671129795953, guid: bad174d63897a349498c442206f7ffaf, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.1
@@ -1745,7 +1769,8 @@ MonoBehaviour:
   playerPrefab: {fileID: 5314223732420630558, guid: a57967d6020e0251d9be904f5dd7f148, type: 3}
   autoCreatePlayer: 0
   playerSpawnMethod: 0
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 5413867672766667091, guid: bad174d63897a349498c442206f7ffaf, type: 3}
 --- !u!4 &1812121239
 Transform:
   m_ObjectHideFlags: 0
@@ -1876,6 +1901,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 282847140}
     m_Modifications:
+    - target: {fileID: -2818332576721541834, guid: bad174d63897a349498c442206f7ffaf, type: 3}
+      propertyPath: sceneId
+      value: 3867960668
+      objectReference: {fileID: 0}
+    - target: {fileID: 484932680183348956, guid: bad174d63897a349498c442206f7ffaf, type: 3}
+      propertyPath: sceneId
+      value: 396096988
+      objectReference: {fileID: 0}
     - target: {fileID: 5413867671129795953, guid: bad174d63897a349498c442206f7ffaf, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.86779
@@ -2541,6 +2574,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 282847140}
     m_Modifications:
+    - target: {fileID: -2818332576721541834, guid: bad174d63897a349498c442206f7ffaf, type: 3}
+      propertyPath: sceneId
+      value: 1267262563
+      objectReference: {fileID: 0}
+    - target: {fileID: 484932680183348956, guid: bad174d63897a349498c442206f7ffaf, type: 3}
+      propertyPath: sceneId
+      value: 665752547
+      objectReference: {fileID: 0}
     - target: {fileID: 5413867671129795953, guid: bad174d63897a349498c442206f7ffaf, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.1
