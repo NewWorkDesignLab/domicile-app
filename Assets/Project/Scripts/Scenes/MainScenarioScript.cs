@@ -12,6 +12,7 @@ public class MainScenarioScript : Singleton<MainScenarioScript> {
     void Start () {
         Debug.Log ("[MainScenarioScript Start] Switched to MainScenario Scene.");
         SetupNetworkingInformations ();
+        // DebugScreens ("/home/tobias/Pictures/tobias_bohn_bhn.jpeg");
 #if UNITY_ANDROID
         Debug.Log ("[MainScenarioScript Start] Plattform: Android");
         manager.StartClient ();
@@ -35,4 +36,13 @@ public class MainScenarioScript : Singleton<MainScenarioScript> {
         webTransport.sslEnabled = true;
 #endif
     }
+
+    // private void DebugScreens (string path) {
+    //     string[] paths = { path };
+    //     Execution.UploadImages (SessionManager.execution.id, paths, (execution) => {
+    //         Debug.Log ("[MainScenarioScript Debug Scrrenshots] Success in Image Upload. Execution: " + execution);
+    //     }, () => {
+    //         Debug.LogError ("[MainScenarioScript Debug Scrrenshots] Error in Image Upload.");
+    //     });
+    // }
 }
