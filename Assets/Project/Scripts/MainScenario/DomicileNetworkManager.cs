@@ -21,7 +21,7 @@ public class DomicileNetworkManager : NetworkManager {
         CreatePlayerMessage createPlayerMessage = new CreatePlayerMessage {
             email = DataManager.persistedData.lastKnownUid,
             scenario = SessionManager.scenario.id,
-            role = SessionManager.IsOwner () ? PlayerRole.Spectator : PlayerRole.Player
+            role = SessionManager.participation.enum_role
         };
 
         conn.Send (createPlayerMessage);

@@ -91,10 +91,6 @@ public static class SessionManager {
             LoadSession (onSuccess, onError);
         }
     }
-
-    public static bool IsOwner () {
-        return scenario.user_id == participation.user_id;
-    }
 }
 
 public enum SessionStatus { Null, Loading, OnHold, Ready }

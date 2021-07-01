@@ -5,9 +5,3 @@ public struct CreatePlayerMessage : NetworkMessage {
     public int scenario;
     public PlayerRole role;
 }
-
-public enum PlayerRole {
-    None,
-    Player,
-    Spectator
-}

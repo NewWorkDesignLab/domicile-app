@@ -57,9 +57,9 @@ public class Player : NetworkBehaviour {
             // This is not localPlayer, but a localPlayer is present
             if (scenario == localPlayer.scenario) {
                 // This Instance is same Scenario as localPlayer
-                if (localPlayer.role == PlayerRole.Spectator) {
+                if (localPlayer.role == PlayerRole.spectator || localPlayer.role == PlayerRole.owner) {
                     // localPlayer is Spectator
-                    if (role == PlayerRole.Player) {
+                    if (role == PlayerRole.player) {
                         // This Instance is a Player
 
                         // If all true, this Instance should be visable

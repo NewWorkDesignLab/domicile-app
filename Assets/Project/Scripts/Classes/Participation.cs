@@ -13,10 +13,14 @@ public class Participation {
     public int user_id;
     /// <summary>ID of the associated Scenario.</summary>
     public int scenario_id;
+    /// <summary>Role of the Player in this Participation as String. (Required for JSON deserialization)</summary>
+    public string role;
     /// <summary>Date and Time of the creation of this Participation as String. (Required for JSON deserialization)</summary>
     public string created_at;
     /// <summary>Date and Time of the last modification of the Participation as String. (Required for JSON deserialization)</summary>
     public string updated_at;
+    /// <summary>Role of the Player in this Participation as Role Enum.</summary>
+    public PlayerRole enum_role { get { return (PlayerRole) System.Enum.Parse (typeof (PlayerRole), role); } }
     /// <summary>Date and Time of the creation of this Participation as Unity DateTime.</summary>
     public DateTime datetime_created_at { get { return System.DateTime.Parse (created_at); } }
     /// <summary>Date and Time of the creation of this Participation as Unity DateTime.</summary>
@@ -97,3 +101,8 @@ public class ParticipationGroup {
         }
     }
 }
+
+/// <summary>
+/// Enum to manage the Role of a Player in a Participation.
+/// /// </summary>
+public enum PlayerRole { player, spectator, owner }

@@ -2656,6 +2656,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 135984007932861312, guid: b55033f195074c50bb17a3e46a5ddfcf, type: 3}
+      propertyPath: debugWebglUrlParameterEmail
+      value: "nutzer1@demo-account.de\t"
+      objectReference: {fileID: 0}
+    - target: {fileID: 135984007932861312, guid: b55033f195074c50bb17a3e46a5ddfcf, type: 3}
+      propertyPath: debugWebglUrlParameterPassword
+      value: domicile-demo
+      objectReference: {fileID: 0}
+    - target: {fileID: 135984007932861312, guid: b55033f195074c50bb17a3e46a5ddfcf, type: 3}
+      propertyPath: debugWebglUrlParameterScenario
+      value: 25787
+      objectReference: {fileID: 0}
     - target: {fileID: 719365099380929780, guid: b55033f195074c50bb17a3e46a5ddfcf, type: 3}
       propertyPath: m_RootOrder
       value: 1
