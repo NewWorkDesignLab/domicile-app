@@ -10,7 +10,7 @@ public static class ServerManager {
     public static string domain = "localhost:3000";
     public static string domainSecure = "domicile.tobiasbohn.com";
     public static string protocol = "http";
-    public static string protocolSecure = "https";
+    public static string protocolSecure = "http";
     private static bool isBussy = false;
     private static List<RequestQueueEntry> requestQueue;
 

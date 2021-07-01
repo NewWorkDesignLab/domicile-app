@@ -28,12 +28,12 @@ public class MainScenarioScript : Singleton<MainScenarioScript> {
     private void SetupNetworkingInformations () {
 #if UNITY_EDITOR
         manager.networkAddress = "localhost";
-        webTransport.clientUseWss = false;
-        webTransport.sslEnabled = false;
+        // webTransport.clientUseWss = false;
+        // webTransport.sslEnabled = false;
 #else
         manager.networkAddress = ServerManager.domainSecure;
-        webTransport.clientUseWss = true;
-        webTransport.sslEnabled = true;
+        // webTransport.clientUseWss = true;
+        // webTransport.sslEnabled = true;
 #endif
     }
 
