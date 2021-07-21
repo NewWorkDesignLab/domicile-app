@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CameraRaycaster : MonoBehaviour {
-    private const float maxDistance = 4;
+    private const float maxDistance = 6;
     private GameObject gazedAtAnyObject = null;
     private GameObject gazedAtRaycastReceiver = null;
 

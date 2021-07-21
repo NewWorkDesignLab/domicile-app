@@ -6,8 +6,9 @@ using UnityEngine;
 public class DomicileNetworkManager : NetworkManager {
     public static DomicileNetworkManager instance;
 
-    private new void Awake () {
+    public override void Awake () {
         instance = this;
+        base.Awake ();
     }
 
     public override void OnStartServer () {

@@ -15,7 +15,7 @@ public static class ServerManager {
     private static List<RequestQueueEntry> requestQueue;
 
     public static void CheckServerAvailabillity (Action onSuccess, Action onFailure) {
-        onSuccess();
+        onSuccess ();
         // TODO
     }
 
