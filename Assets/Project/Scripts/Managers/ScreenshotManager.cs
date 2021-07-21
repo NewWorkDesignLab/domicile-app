@@ -43,37 +43,56 @@ public static class ScreenshotManager {
     public static IEnumerator SavePhoto (Action<bool> callback) {
         yield return new WaitForEndOfFrame ();
 
-#if UNITY_EDITOR
-        Debug.Log ("[ScreenshotScript SavePhoto] Would only save Screenshot on Android.");
-        yield return new WaitForSecondsRealtime (.5f);
-        callback (true);
-#else
-        Texture2D image = new Texture2D (Screen.width, Screen.height, TextureFormat.RGB24, false);
-        image.ReadPixels (new Rect (0, 0, Screen.width, Screen.height), 0, 0);
+        Camera cam = GameObject.FindGameObjectWithTag ("ScreenshotCamera").GetComponent<Camera> ();
+        var resWidth = (int) cam.pixelWidth;
+        var resHeight = (int) cam.pixelHeight;
+        RenderTexture rt = new RenderTexture (resWidth, resHeight, 24);
+        cam.targetTexture = rt;
+        cam.Render ();
+        Texture2D image = new Texture2D (resWidth, resHeight, TextureFormat.RGB24, false);
+        RenderTexture.active = rt;
+        image.ReadPixels (cam.pixelRect, 0, 0);
         image.Apply ();
 
-        string myFileName = "domicile_screenshot_" + System.DateTime.Now.Hour + System.DateTime.Now.Minute + System.DateTime.Now.Second + ".png";
-        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery (image, "Domicile VR", myFileName, (success, path) => {
-            if (success) {
-                Debug.Log ("[ScreenshotScript SavePhoto] Successfully saved Screenshot to: " + path);
+        string fileName = $"domicile_screenshot_{System.DateTime.Now.ToString("o")}.png";
+        bool imageSuccess = false;
+        string path = null;
 
-                // Upload image
-                string[] paths = { path };
-                Execution.UploadImages (SessionManager.execution.id, paths, (execution) => {
-                    Debug.Log ("[ScreenshotScript SavePhoto] Success in Image Upload. Execution: " + execution);
-                    callback (true);
-                }, () => {
-                    Debug.LogError ("[EndScenario Start] Error in Image Upload.");
-                    callback (false);
-                });
+#if UNITY_EDITOR
+        byte[] bytes = image.EncodeToPNG ();
+        path = $"{Application.persistentDataPath}/{fileName}";
+        System.IO.File.WriteAllBytes (path, bytes);
+        Debug.Log ($"[ScreenshotScript SavePhoto] Saved Screenshot to: {path}");
+        imageSuccess = true;
+#else
+        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery (image, "Domicile VR", fileName, (success, nativeGalleryPath) => {
+            if (success) {
+                Debug.Log ("[ScreenshotScript SavePhoto] Successfully saved Screenshot to: " + nativeGalleryPath);
+                imageSuccess = true;
+                path = nativeGalleryPath;
             } else {
                 Debug.LogError ("[ScreenshotScript SavePhoto] Error while creating Screenshot.");
-                callback (false);
             }
         });
         Debug.Log ("[ScreenshotScript SavePhoto] Image Permission: " + permission);
-        // CoroutineHelper.instance.Destroy (image);
 #endif
+        cam.targetTexture = null;
+        RenderTexture.active = null;
+        rt.Release ();
+
+        if (imageSuccess && path != null) {
+            // Upload image
+            string[] paths = { path };
+            Execution.UploadImages (SessionManager.execution.id, paths, (execution) => {
+                Debug.Log ("[ScreenshotScript SavePhoto] Success in Image Upload. Execution: " + execution);
+                callback (true);
+            }, () => {
+                Debug.LogError ("[EndScenario Start] Error in Image Upload.");
+                callback (false);
+            });
+        } else {
+            callback (false);
+        }
     }
 #else
     public static void TakeScreenshot (Action<bool> callback) {
